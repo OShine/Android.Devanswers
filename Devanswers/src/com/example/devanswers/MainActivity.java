@@ -14,6 +14,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -21,16 +23,20 @@ import android.widget.TextView;
 public class MainActivity extends Activity {
 
 	ImageView DevMainImage;
+	ImageView DevMainImage2;
 	WebView Webview;
 	MyTask DevMain;
 	String note = null;
+	
 	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 	
+		final Animation anim = AnimationUtils.loadAnimation(this, R.anim.shake);
 		final TextView NodeText = (TextView)findViewById(R.id.NodeText);
 		DevMainImage = (ImageView) findViewById(R.id.DevMainImage);
+		DevMainImage2 = (ImageView) findViewById(R.id.DevMainImage2);
 		
 		OnClickListener onClick = new OnClickListener() {
 			public void onClick(View v) {
@@ -38,11 +44,12 @@ public class MainActivity extends Activity {
 				DevMain = new MyTask();
 				DevMain.execute();
 				NodeText.setText(note);
-				
+				DevMainImage.startAnimation(anim);
+					
 			}
 		};
 
-		DevMainImage.setOnClickListener(onClick);
+		DevMainImage2.setOnClickListener(onClick);
 	}
 
 	@Override

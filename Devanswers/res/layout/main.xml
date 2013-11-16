@@ -17,13 +17,13 @@
         android:text="@string/main_title" />
 
     <ImageView
-        android:id="@+id/DevMainImage"
+        android:id="@+id/DevMainImage2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:contentDescription="@string/decsription"
-        android:src="@drawable/logo" />
+        android:src="@drawable/logo_one" />
 
     <TextView
         android:id="@+id/NodeText"
@@ -33,5 +33,15 @@
         android:gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         android:text="" />
+
+    <ImageView
+        android:id="@+id/DevMainImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/DevMainImage2"
+        android:layout_alignLeft="@+id/DevMainImage2"
+        android:layout_alignRight="@+id/DevMainImage2"
+        android:contentDescription="@string/decsription"
+        android:src="@drawable/logo_two" />
 
 </RelativeLayout>
