@@ -10,25 +10,33 @@ import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.ShareActionProvider;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity  {
 
 	ImageView DevMainImage;
 	ImageView DevMainImage2;
+	TextView LinkID;
 	MyTask DevMain;
 	String note = null;
-	
 	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -36,6 +44,7 @@ public class MainActivity extends Activity {
 	
 		final Animation anim = AnimationUtils.loadAnimation(this, R.anim.shake);
 		final TextView NodeText = (TextView)findViewById(R.id.NodeText);
+		final TextView LinkID = (TextView)findViewById(R.id.Linkid);
 		DevMainImage = (ImageView) findViewById(R.id.DevMainImage);
 		DevMainImage2 = (ImageView) findViewById(R.id.DevMainImage2);
 		final RelativeLayout RelLay = (RelativeLayout) findViewById(R.id.RelativeLayout);
@@ -43,6 +52,13 @@ public class MainActivity extends Activity {
 		DevMain = new MyTask();
 		DevMain.execute();
 		NodeText.setText(note);
+			
+		if (isOnline() == false) {
+
+			Toast toast = Toast.makeText(getApplicationContext(),
+					R.string.connection, Toast.LENGTH_SHORT);
+			toast.show();
+		}
 		
 		OnClickListener onClick = new OnClickListener() {
 			public void onClick(View v) {
@@ -52,36 +68,26 @@ public class MainActivity extends Activity {
 				colors.add("#64E986");
 				colors.add("#F0F8FF");
 				colors.add("#6CC417");
-				colors.add("#EFDECD");
 				colors.add("#FFBF00");
 				colors.add("#FF033E");
 				colors.add("#9966CC");
 				colors.add("#A4C639");
-				colors.add("#F2F3F4");
 				colors.add("#CD9575");
 				colors.add("#915C83");
-				colors.add("#FAEBD7");
-				colors.add("#8DB600");
-				colors.add("#FBCEB1");
-				colors.add("#00FFFF");
 				colors.add("#7FFFD4");
 				colors.add("#827B60");
 				colors.add("#4B5320");
 				colors.add("#B2BEB5");
 				colors.add("#87A96B");
-				colors.add("#FF9966");
 				colors.add("#FDEE00");
 				colors.add("#6E7F80");
 				colors.add("#B2C248");
 				colors.add("#FF2052");
 				colors.add("#893BFF");
 				colors.add("#007FFF");
-				colors.add("#F0FFFF");
 				colors.add("#89CFF0");
 				colors.add("#A1CAF1");
-				colors.add("#F4C2C2");
 				colors.add("#21ABCD");
-				colors.add("#FAE7B5");
 				colors.add("#FFE135");
 				colors.add("#C25283");
 				colors.add("#F88158");
@@ -92,21 +98,15 @@ public class MainActivity extends Activity {
 				colors.add("#E9AB17");
 				colors.add("#FBB117");
 				colors.add("#4C787E");
-				colors.add("#F5F5DC");
-				colors.add("#FFE4C4");
 				colors.add("#3D2B1F");
 				colors.add("#FE6F5E");
 				colors.add("#413839");
 				colors.add("#4C4646");
 				colors.add("#463E3F");
-				colors.add("#FFEBCD");
-				colors.add("#FFEBCD");
 				colors.add("#318CE7");
 				colors.add("#ACE5EE");
-				colors.add("#FAF0BE");
 				colors.add("#7E3517");
 				colors.add("#F9B7FF");
-				colors.add("#0000FF");
 				colors.add("#B7CEEC");
 				colors.add("#A2A2D0");
 				colors.add("#4EE2EC");
@@ -137,7 +137,6 @@ public class MainActivity extends Activity {
 				colors.add("#0070FF");
 				colors.add("#B5A642");
 				colors.add("#CB4154");
-				colors.add("#1DACD6");
 				colors.add("#FDD017");
 				colors.add("#66FF00");
 				colors.add("#BF94E4");
@@ -146,15 +145,12 @@ public class MainActivity extends Activity {
 				colors.add("#FF007F");
 				colors.add("#08E8DE");
 				colors.add("#D19FE8");
-				colors.add("#F4BBFF");
 				colors.add("#FF55A3");
 				colors.add("#FB607F");
 				colors.add("#004225");
 				colors.add("#CD7F32");
 				colors.add("#835C3B");
 				colors.add("#E2A76F");
-				colors.add("#FFC1CC");
-				colors.add("#E7FEFF");
 				colors.add("#F0DC82");
 				colors.add("#480607");
 				colors.add("#8C001A");
@@ -172,14 +168,11 @@ public class MainActivity extends Activity {
 				colors.add("#E38AAE");
 				colors.add("#006B3C");
 				colors.add("#ED872D");
-				colors.add("#E30022");
 				colors.add("#FFF600");
 				colors.add("#4B3621");
 				colors.add("#1E4D2B");
 				colors.add("#A3C1AD");
 				colors.add("#C19A6B");
-				colors.add("#78866B");
-				colors.add("#FFFF99");
 				colors.add("#FFEF00");
 				colors.add("#FF0800");
 				colors.add("#E4717A");
@@ -209,7 +202,6 @@ public class MainActivity extends Activity {
 				colors.add("#A0785A");
 				colors.add("#FAD6A5");
 				colors.add("#34282C");
-				colors.add("#36454F");
 				colors.add("#7FFF00");
 				colors.add("#8AFB17");
 				colors.add("#DE3163");
@@ -223,7 +215,6 @@ public class MainActivity extends Activity {
 				colors.add("#98817B");
 				colors.add("#E34234");
 				colors.add("#E4D00A");
-				colors.add("#FBCCE7");
 				colors.add("#6D6968");
 				colors.add("#3EA055");
 				colors.add("#0047AB");
@@ -242,23 +233,17 @@ public class MainActivity extends Activity {
 				colors.add("#F88379");
 				colors.add("#FF4040");
 				colors.add("#893F45");
-				colors.add("#FBEC5D");
 				colors.add("#FFF380");
 				colors.add("#B31B1B");
 				colors.add("#9ACEEB");
 				colors.add("#6495ED");
-				colors.add("#FFF8DC");
-				colors.add("#FFF8E7");
 				colors.add("#FCDFFF");
 				colors.add("#9F000F");
-				colors.add("#FFFFCC");
 				colors.add("#DC143C");
 				colors.add("#BE0032");
 				colors.add("#990000");
 				colors.add("#9172EC");
-				colors.add("#5CB3FF");
 				colors.add("#00FFFF");
-				colors.add("#92C7C7");
 				colors.add("#FFFF31");
 				colors.add("#F0E130");
 				colors.add("#00008B");
@@ -315,14 +300,12 @@ public class MainActivity extends Activity {
 				colors.add("#A9203E");
 				colors.add("#EF3038");
 				colors.add("#E9692C");
-				colors.add("#DA3287");
 				colors.add("#FAD6A5");
 				colors.add("#B94E48");
 				colors.add("#704241");
 				colors.add("#C154C1");
 				colors.add("#004B49");
 				colors.add("#9955BB");
-				colors.add("#CC00CC");
 				colors.add("#FFCBA4");
 				colors.add("#FF1493");
 				colors.add("#FF9933");
@@ -334,19 +317,13 @@ public class MainActivity extends Activity {
 				colors.add("#E3319D");
 				colors.add("#1E90FF");
 				colors.add("#D71868");
-				colors.add("#85BB65");
 				colors.add("#6AFB92");
 				colors.add("#00009C");
 				colors.add("#7F525D");
 				colors.add("#0000A0");
 				colors.add("#E1A95F");
-				colors.add("#614051");
-				colors.add("#F0EAD6");
-				colors.add("#1034A6");
 				colors.add("#9AFEFF");
-				colors.add("#FF003F");
 				colors.add("#00FF00");
-				colors.add("#6F00FF");
 				colors.add("#F4BBFF");
 				colors.add("#BF00FF");
 				colors.add("#3F00FF");
@@ -370,9 +347,6 @@ public class MainActivity extends Activity {
 				colors.add("#E25822");
 				colors.add("#FC8EAC");
 				colors.add("#F7E98E");
-				colors.add("#EEDC82");
-				colors.add("#FFFAF0");
-				colors.add("#FF1493");
 				colors.add("#CCFF00");
 				colors.add("#FF004F");
 				colors.add("#228B22");
@@ -384,10 +358,8 @@ public class MainActivity extends Activity {
 				colors.add("#FF00FF");
 				colors.add("#FF77FF");
 				colors.add("#E48400");
-				colors.add("#CC6666");
 				colors.add("#DCDCDC");
 				colors.add("#E49B0F");
-				colors.add("#F8F8FF");
 				colors.add("#B06500");
 				colors.add("#C9BE62");
 				colors.add("#6082B6");
@@ -396,15 +368,12 @@ public class MainActivity extends Activity {
 				colors.add("#EAC117");
 				colors.add("#996515");
 				colors.add("#FCC200");
-				colors.add("#FFDF00");
 				colors.add("#EDDA74");
-				colors.add("#837E7C");
 				colors.add("#A8E4A0");
 				colors.add("#5E5A80");
 				colors.add("#DC381F");
 				colors.add("#465945");
 				colors.add("#B6B6B4");
-				colors.add("#5C5858");
 				colors.add("#D1D0CE");
 				colors.add("#504A4B");
 				colors.add("#5E7D7E");
@@ -412,27 +381,21 @@ public class MainActivity extends Activity {
 				colors.add("#1164B4");
 				colors.add("#6AA121");
 				colors.add("#89C35C");
-				colors.add("#6CBB3C");
-				colors.add("#B5EAAA");
 				colors.add("#ADFF2F");
 				colors.add("#307D7E");
 				colors.add("#808080");
 				colors.add("#A99A86");
-				colors.add("#2C3539");
 				colors.add("#00FF7F");
-				colors.add("#663854");
 				colors.add("#E66C2C");
 				colors.add("#446CCF");
 				colors.add("#5218FA");
 				colors.add("#E9D66B");
 				colors.add("#3FFF00");
 				colors.add("#C90016");
-				colors.add("#DA9100");
 				colors.add("#EDE275");
 				colors.add("#617C58");
 				colors.add("#DF73FF");
 				colors.add("#D462FF");
-				colors.add("#F400A1");
 				colors.add("#F0FFF0");
 				colors.add("#49796B");
 				colors.add("#FF1DCE");
@@ -448,18 +411,14 @@ public class MainActivity extends Activity {
 				colors.add("#4B0082");
 				colors.add("#002FA7");
 				colors.add("#FF4F00");
-				colors.add("#5A4FCF");
 				colors.add("#F4F0EC");
 				colors.add("#009000");
-				colors.add("#FFFFF0");
 				colors.add("#5EFB6E");
 				colors.add("#F8DE7E");
-				colors.add("#A23BEC");
 				colors.add("#D73B3E");
 				colors.add("#A50B5E");
 				colors.add("#A0CFEC");
 				colors.add("#46C7C7");
-				colors.add("#616D7E");
 				colors.add("#FADA5E");
 				colors.add("#BDDA57");
 				colors.add("#29AB87");
@@ -467,31 +426,22 @@ public class MainActivity extends Activity {
 				colors.add("#C3B091");
 				colors.add("#C5908E");
 				colors.add("#E8000D");
-				colors.add("#087830");
 				colors.add("#D6CADD");
 				colors.add("#15317E");
 				colors.add("#26619C");
 				colors.add("#FEFE22");
 				colors.add("#A9BA9D");
 				colors.add("#CF1020");
-				colors.add("#E42217");
-				colors.add("#E6E6FA");
 				colors.add("#CCCCFF");
-				colors.add("#FFF0F5");
 				colors.add("#C4C3D0");
 				colors.add("#9457EB");
-				colors.add("#EE82EE");
 				colors.add("#FBAED2");
 				colors.add("#EBDDE2");
 				colors.add("#967BB6");
-				colors.add("#FBA0E3");
-				colors.add("#87F717");
 				colors.add("#FFF700");
-				colors.add("#FFFACD");
 				colors.add("#BFFF00");
 				colors.add("#FFF44F");
 				colors.add("#FDD5B1");
-				colors.add("#93FFE8");
 				colors.add("#ADDFFF");
 				colors.add("#B5651D");
 				colors.add("#E66771");
@@ -503,25 +453,20 @@ public class MainActivity extends Activity {
 				colors.add("#F984EF");
 				colors.add("#FAFAD2");
 				colors.add("#D3D3D3");
-				colors.add("#90EE90");
-				colors.add("#C3FDB8");
 				colors.add("#F0E68C");
 				colors.add("#B19CD9");
 				colors.add("#FFB6C1");
 				colors.add("#FFA07A");
 				colors.add("#FF9999");
 				colors.add("#3EA99F");
-				colors.add("#87CEFA");
 				colors.add("#CCFFFF");
 				colors.add("#736AFF");
 				colors.add("#778899");
 				colors.add("#728FCE");
 				colors.add("#B38B6D");
 				colors.add("#E68FAC");
-				colors.add("#FFFFED");
 				colors.add("#C8A2C8");
 				colors.add("#41A317");
-				colors.add("#195905");
 				colors.add("#FAF0E6");
 				colors.add("#C48793");
 				colors.add("#534B4F");
@@ -530,12 +475,9 @@ public class MainActivity extends Activity {
 				colors.add("#E62020");
 				colors.add("#FFBD88");
 				colors.add("#FF00FF");
-				colors.add("#AAF0D1");
 				colors.add("#F8F4FF");
-				colors.add("#C04000");
 				colors.add("#FBEC5D");
 				colors.add("#6050DC");
-				colors.add("#0BDA51");
 				colors.add("#979AAA");
 				colors.add("#FF8040");
 				colors.add("#FF8243");
@@ -549,7 +491,6 @@ public class MainActivity extends Activity {
 				colors.add("#E5B73B");
 				colors.add("#66DDAA");
 				colors.add("#0000CD");
-				colors.add("#E2062C");
 				colors.add("#F3E5AB");
 				colors.add("#035096");
 				colors.add("#347235");
@@ -566,7 +507,6 @@ public class MainActivity extends Activity {
 				colors.add("#674C47");
 				colors.add("#0054B4");
 				colors.add("#48D1CC");
-				colors.add("#CA226B");
 				colors.add("#FDBCB4");
 				colors.add("#BCC6CC");
 				colors.add("#2B1B17");
@@ -574,7 +514,6 @@ public class MainActivity extends Activity {
 				colors.add("#004953");
 				colors.add("#FFC40C");
 				colors.add("#FEFCFF");
-				colors.add("#3EB489");
 				colors.add("#F5FFFA");
 				colors.add("#98FF98");
 				colors.add("#646D7E");
@@ -582,7 +521,6 @@ public class MainActivity extends Activity {
 				colors.add("#827839");
 				colors.add("#493D26");
 				colors.add("#73A9C2");
-				colors.add("#AE0C00");
 				colors.add("#ADDFAD");
 				colors.add("#30BA8F");
 				colors.add("#997A8D");
@@ -591,10 +529,7 @@ public class MainActivity extends Activity {
 				colors.add("#FFDB58");
 				colors.add("#21421E");
 				colors.add("#F6ADC6");
-				colors.add("#2A8000");
 				colors.add("#FADA5E");
-				colors.add("#FFDEAD");
-				colors.add("#000080");
 				colors.add("#59E817");
 				colors.add("#FFA343");
 				colors.add("#FE59C2");
@@ -623,7 +558,6 @@ public class MainActivity extends Activity {
 				colors.add("#FFA500");
 				colors.add("#FF9F00");
 				colors.add("#FF4500");
-				colors.add("#C47451");
 				colors.add("#F8D568");
 				colors.add("#DA70D6");
 				colors.add("#414A4C");
@@ -632,31 +566,23 @@ public class MainActivity extends Activity {
 				colors.add("#1CA9C9");
 				colors.add("#006600");
 				colors.add("#273BE2");
-				colors.add("#682860");
 				colors.add("#BCD4E6");
-				colors.add("#AFEEEE");
 				colors.add("#CFECEC");
 				colors.add("#987654");
 				colors.add("#AF4035");
 				colors.add("#9BC4E2");
 				colors.add("#DDADAF");
-				colors.add("#DA8A67");
 				colors.add("#ABCDEF");
 				colors.add("#E6BE8A");
-				colors.add("#EEE8AA");
-				colors.add("#98FB98");
 				colors.add("#DCD0FF");
 				colors.add("#F984E5");
 				colors.add("#FADADD");
-				colors.add("#DB7093");
 				colors.add("#96DED1");
 				colors.add("#C9C0BB");
 				colors.add("#ECEBBD");
 				colors.add("#BC987E");
 				colors.add("#78184A");
 				colors.add("#E56717");
-				colors.add("#FFEFD5");
-				colors.add("#FFFFC2");
 				colors.add("#50C878");
 				colors.add("#B4CFEC");
 				colors.add("#836953");
@@ -667,14 +593,10 @@ public class MainActivity extends Activity {
 				colors.add("#FFD1DC");
 				colors.add("#B39EB5");
 				colors.add("#FF6961");
-				colors.add("#CB99C9");
 				colors.add("#FDFD96");
 				colors.add("#536878");
-				colors.add("#FFE5B4");
-				colors.add("#FFDAB9");
 				colors.add("#FADFAD");
 				colors.add("#EAE0C8");
-				colors.add("#88D8C0");
 				colors.add("#E6E200");
 				colors.add("#1C39BB");
 				colors.add("#32127A");
@@ -690,8 +612,6 @@ public class MainActivity extends Activity {
 				colors.add("#01796F");
 				colors.add("#387C44");
 				colors.add("#FAAFBE");
-				colors.add("#C48189");
-				colors.add("#FFDFDD");
 				colors.add("#E45E9D");
 				colors.add("#E799A3");
 				colors.add("#FC74FD");
@@ -706,8 +626,6 @@ public class MainActivity extends Activity {
 				colors.add("#7D0541");
 				colors.add("#583759");
 				colors.add("#7D0552");
-				colors.add("#FF5A36");
-				colors.add("#B0E0E6");
 				colors.add("#C6DEFF");
 				colors.add("#FF8F00");
 				colors.add("#003153");
@@ -742,7 +660,6 @@ public class MainActivity extends Activity {
 				colors.add("#FF0000");
 				colors.add("#A52A2A");
 				colors.add("#7F5217");
-				colors.add("#C35817");
 				colors.add("#FF5349");
 				colors.add("#C71585");
 				colors.add("#990012");
@@ -770,7 +687,6 @@ public class MainActivity extends Activity {
 				colors.add("#0038A8");
 				colors.add("#2B60DE");
 				colors.add("#CA2C92");
-				colors.add("#7851A9");
 				colors.add("#FFD801");
 				colors.add("#E0115F");
 				colors.add("#F62217");
@@ -784,7 +700,6 @@ public class MainActivity extends Activity {
 				colors.add("#8B4513");
 				colors.add("#FF6700");
 				colors.add("#FBB917");
-				colors.add("#23297A");
 				colors.add("#A1C935");
 				colors.add("#FF8C69");
 				colors.add("#FF91A4");
@@ -799,13 +714,11 @@ public class MainActivity extends Activity {
 				colors.add("#2554C7");
 				colors.add("#CBA135");
 				colors.add("#FF2400");
-				colors.add("#FFD800");
 				colors.add("#76FF7A");
 				colors.add("#C2DFFF");
 				colors.add("#2E8B57");
 				colors.add("#438D80");
 				colors.add("#321414");
-				colors.add("#FFF5EE");
 				colors.add("#437C17");
 				colors.add("#CC6600");
 				colors.add("#FFBA00");
@@ -816,7 +729,6 @@ public class MainActivity extends Activity {
 				colors.add("#E55B3C");
 				colors.add("#FC0FC0");
 				colors.add("#8A4117");
-				colors.add("#488AC7");
 				colors.add("#C0C0C0");
 				colors.add("#CB410B");
 				colors.add("#007474");
@@ -828,7 +740,6 @@ public class MainActivity extends Activity {
 				colors.add("#726E6D");
 				colors.add("#933D41");
 				colors.add("#100C08");
-				colors.add("#FFFAFA");
 				colors.add("#0FC0FC");
 				colors.add("#A7FC00");
 				colors.add("#4AA02C");
@@ -836,19 +747,16 @@ public class MainActivity extends Activity {
 				colors.add("#FADA5E");
 				colors.add("#57E964");
 				colors.add("#E4D96F");
-				colors.add("#FFE87C");
 				colors.add("#FFCC33");
 				colors.add("#E67451");
 				colors.add("#FAD6A5");
 				colors.add("#FD5E53");
-				colors.add("#D2B48C");
 				colors.add("#ECE5B6");
 				colors.add("#F94D00");
 				colors.add("#F28500");
 				colors.add("#FFCC00");
 				colors.add("#483C32");
 				colors.add("#8B8589");
-				colors.add("#CD5700");
 				colors.add("#D0F0C0");
 				colors.add("#F4C2C2");
 				colors.add("#008080");
@@ -862,11 +770,9 @@ public class MainActivity extends Activity {
 				colors.add("#E08D3C");
 				colors.add("#C88141");
 				colors.add("#DBD7D2");
-				colors.add("#EEE600");
 				colors.add("#FF6347");
 				colors.add("#746CC0");
 				colors.add("#FFC87C");
-				colors.add("#FD0E35");
 				colors.add("#7DFDFE");
 				colors.add("#00755E");
 				colors.add("#0073CF");
@@ -892,15 +798,12 @@ public class MainActivity extends Activity {
 				colors.add("#635147");
 				colors.add("#5B92E5");
 				colors.add("#B78727");
-				colors.add("#FFFF66");
 				colors.add("#014421");
 				colors.add("#7B1113");
 				colors.add("#AE2029");
 				colors.add("#E1AD21");
 				colors.add("#D3003F");
 				colors.add("#E55451");
-				colors.add("#565051");
-				colors.add("#F3E5AB");
 				colors.add("#C5B358");
 				colors.add("#7E354D");
 				colors.add("#C80815");
@@ -920,9 +823,7 @@ public class MainActivity extends Activity {
 				colors.add("#004242");
 				colors.add("#EBF4FA");
 				colors.add("#FC6C85");
-				colors.add("#645452");
-				colors.add("#F5DEB3");
-				colors.add("#FFFFFF");
+				colors.add("#645452");				
 				colors.add("#F5F5F5");
 				colors.add("#A2ADD0");
 				colors.add("#FF43A4");
@@ -933,7 +834,6 @@ public class MainActivity extends Activity {
 				colors.add("#966F33");
 				colors.add("#738678");
 				colors.add("#0F4D92");
-				colors.add("#FFFF00");
 				colors.add("#52D017");
 				colors.add("#FFAE42");
 				colors.add("#0014A8");
@@ -941,7 +841,8 @@ public class MainActivity extends Activity {
 				colors.add("#54C571");
 				
 				Random randomcolors = new Random();
-				final int generatedRandomNum = randomcolors.nextInt(891);
+				final int generatedRandomNum = randomcolors.nextInt(775);
+				LinkID.setText(Integer.toString(generatedRandomNum));
 				RelLay.setBackgroundColor(Color.parseColor(colors.get(generatedRandomNum)));
  
 				DevMainImage.startAnimation(anim);
@@ -955,11 +856,64 @@ public class MainActivity extends Activity {
 		DevMainImage2.setOnClickListener(onClick);
 	}
 
+	public boolean isOnline() {
+		String cs = Context.CONNECTIVITY_SERVICE;
+		ConnectivityManager cm = (ConnectivityManager) getSystemService(cs);
+		if (cm.getActiveNetworkInfo() == null) {
+
+			return false;
+		}
+		return cm.getActiveNetworkInfo().isConnectedOrConnecting();
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// TODO Auto-generated method stub
+		
+		switch (item.getItemId()) {
+		case R.id.i_about:
+			AlertDialog();
+			return true;
+
+			
+		default:
+			return super.onOptionsItemSelected(item);
+		}
+		
+	}
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.main, menu);
+		
+		MenuItem shareItem = (MenuItem) menu.findItem(R.id.i_share);
+		ShareActionProvider mShareActionProvider = (ShareActionProvider) shareItem.getActionProvider();
+		
+		Intent shareIntent = new Intent(Intent.ACTION_SEND);
+		shareIntent.setAction(Intent.ACTION_SEND);
+		shareIntent.setType("text/plain");
+		shareIntent.putExtra(Intent.EXTRA_TEXT, "text to share");
+		
+		mShareActionProvider.setShareIntent(shareIntent);
+		
 		return true;
 	}
+	
+	public boolean AlertDialog() {
+	AlertDialog.Builder builder = new AlertDialog.Builder(this);
+	builder.setTitle("О приложении DevAnswers").setMessage("Автор приложения - Taurusha." +
+			" Информация доступная приложению, подтягивается с сайта devanswers.ru." +
+			" Все права на используемый материал принадлежат его владельцу. ")
+	                        .setCancelable(false)
+	        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+	            public void onClick(DialogInterface dialog, int id) {
+	                // do something if OK
+	            }
+	        });
+	builder.create().show();
+	return false;
+	}
+	
 
 	class MyTask extends AsyncTask<Void, Void, Void> {
 

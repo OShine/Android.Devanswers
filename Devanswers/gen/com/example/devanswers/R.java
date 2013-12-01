@@ -32,9 +32,11 @@ public final class R {
     public static final class id {
         public static final int DevMainImage=0x7f090004;
         public static final int DevMainImage2=0x7f090002;
+        public static final int Linkid=0x7f090005;
         public static final int NodeText=0x7f090003;
         public static final int RelativeLayout=0x7f090000;
-        public static final int action_settings=0x7f090005;
+        public static final int i_about=0x7f090006;
+        public static final int i_share=0x7f090007;
         public static final int logotext=0x7f090001;
     }
     public static final class layout {
@@ -44,10 +46,13 @@ public final class R {
         public static final int main=0x7f080000;
     }
     public static final class string {
-        public static final int action_settings=0x7f060003;
+        public static final int about_menu=0x7f060003;
         public static final int app_name=0x7f060000;
+        public static final int connection=0x7f060005;
         public static final int decsription=0x7f060002;
         public static final int main_title=0x7f060001;
+        public static final int share=0x7f060006;
+        public static final int update_menu=0x7f060004;
     }
     public static final class style {
         /** 
