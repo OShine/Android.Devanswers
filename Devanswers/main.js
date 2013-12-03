@@ -37,11 +37,6 @@ public class MainActivity extends Activity  {
 	TextView LinkID;
 	MyTask DevMain;
 	String note;
-	final List<String> colors = new ArrayList<String>();
-	final ArrayList<String> links = new ArrayList<String>();
-	int number = 0;
-	Elements element;
-	MenuItem shareItem;
 	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -49,14 +44,16 @@ public class MainActivity extends Activity  {
 			
 		final Animation anim = AnimationUtils.loadAnimation(this, R.anim.shake);
 		final TextView NodeText = (TextView)findViewById(R.id.NodeText);
-		
+		final TextView LinkID = (TextView)findViewById(R.id.Linkid);
 		DevMainImage = (ImageView) findViewById(R.id.DevMainImage);
 		DevMainImage2 = (ImageView) findViewById(R.id.DevMainImage2);
+		final RelativeLayout RelLay = (RelativeLayout) findViewById(R.id.RelativeLayout);
 		
 		DevMain = new MyTask();
 		DevMain.execute();
 		NodeText.setText(note);
 		
+			
 		if (isOnline() == false) {
 
 			Toast toast = Toast.makeText(getApplicationContext(),
@@ -67,22 +64,7 @@ public class MainActivity extends Activity  {
 		OnClickListener onClick = new OnClickListener() {
 			public void onClick(View v) {
 				
-				colors();
-				DevMainImage.startAnimation(anim);
-				DevMain = new MyTask();
-				DevMain.execute();
-				NodeText.setText(note);			
-				
-			}
-		};
-
-		DevMainImage2.setOnClickListener(onClick);
-	}
-		
-	public void colors() {
-	
-		//385 757 544 650 325 690 510 305 304 362 109 449 531
-		
+				final List<String> colors = new ArrayList<String>();
 				colors.add("#5D8AA8");
 				colors.add("#64E986");
 				colors.add("#F0F8FF");
@@ -858,19 +840,96 @@ public class MainActivity extends Activity  {
 				colors.add("#0014A8");
 				colors.add("#2C1608");
 				colors.add("#54C571");
-								
-				final TextView LinkID = (TextView)findViewById(R.id.Linkid);
-				final RelativeLayout RelLay = (RelativeLayout) findViewById(R.id.RelativeLayout);
+				//385 757 544 650 325 690 510 305 304 362 109
 				
 				Random randomcolors = new Random();
 				final int generatedRandomNum = randomcolors.nextInt(775);
 				LinkID.setText(Integer.toString(generatedRandomNum));
 				RelLay.setBackgroundColor(Color.parseColor(colors.get(generatedRandomNum)));
-				colors.clear();
+ 
+				DevMainImage.startAnimation(anim);
+				DevMain = new MyTask();
+				DevMain.execute();
+				NodeText.setText(note);			
+				
+			}
+		};
+
+		DevMainImage2.setOnClickListener(onClick);
 	}
 
-	public int links() {
+	public boolean isOnline() {
+		String cs = Context.CONNECTIVITY_SERVICE;
+		ConnectivityManager cm = (ConnectivityManager) getSystemService(cs);
+		if (cm.getActiveNetworkInfo() == null) {
+
+			return false;
+		}
+		return cm.getActiveNetworkInfo().isConnectedOrConnecting();
+	}
+	
+	
+	public boolean onOptionsItemSelected(MenuItem item) {
+				
+		switch (item.getItemId()) {
+		case R.id.i_about:
+			AlertDialog();
+			return true;
+
+			
+		default:
+			return super.onOptionsItemSelected(item);
+		}
 		
+	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.main, menu);
+		
+		MenuItem shareItem = (MenuItem) menu.findItem(R.id.i_share);
+		ShareActionProvider mShareActionProvider = (ShareActionProvider) shareItem.getActionProvider();
+				
+		Intent shareIntent = new Intent(Intent.ACTION_SEND);
+		shareIntent.setAction(Intent.ACTION_SEND);
+		shareIntent.setType("text/plain");
+		shareIntent.putExtra(Intent.EXTRA_TEXT, "Девелопер ответил: " + note + "." +
+				" Оригинальная цитата доступна здесь: http://devanswers.ru/" );
+		
+		mShareActionProvider.setShareIntent(shareIntent);
+		
+		return true;
+	}
+	
+	public boolean AlertDialog() {
+	AlertDialog.Builder builder = new AlertDialog.Builder(this);
+	builder.setTitle("О приложении DevAnswers").setMessage("Автор приложения - Taurusha." +
+			" Оригинальные цитаты достуны на сайте devanswers.ru." +
+			" Все права на используемый материал принадлежат его владельцу. ")
+	                        .setCancelable(false)
+	        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+	            public void onClick(DialogInterface dialog, int id) {
+	                // do something if OK
+	            }
+	        });
+	builder.create().show();
+	return false;
+	}
+	
+
+	class MyTask extends AsyncTask<Void, Void, Void> {
+
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();			
+		}
+
+		@Override
+		protected Void doInBackground(Void... params) {
+								
+			try {				
+				
+				final ArrayList<String> links = new ArrayList<String>();
 				links.add("http://devanswers.ru/a/Se");
 				links.add("http://devanswers.ru/a/gb");
 				links.add("http://devanswers.ru/a/1g");
@@ -1313,89 +1372,12 @@ public class MainActivity extends Activity  {
 				links.add("http://devanswers.ru/a/xc");
 				
 				Random rand = new Random();
-				number = rand.nextInt(440);
-				return(number);
-		
-	}
-	
-	public boolean isOnline() {
-		String cs = Context.CONNECTIVITY_SERVICE;
-		ConnectivityManager cm = (ConnectivityManager) getSystemService(cs);
-		if (cm.getActiveNetworkInfo() == null) {
-
-			return false;
-		}
-		return cm.getActiveNetworkInfo().isConnectedOrConnecting();
-	}
-	
-	public boolean onOptionsItemSelected(MenuItem item) {
+				int number = rand.nextInt(440);
 				
-		switch (item.getItemId()) {
-		case R.id.i_about:
-			AlertDialog();
-			return true;
-		case R.id.i_share:	{
-			
-			ShareActionProvider mShareActionProvider = (ShareActionProvider) shareItem.getActionProvider();
-					
-			Intent shareIntent = new Intent(Intent.ACTION_SEND);
-			shareIntent.setAction(Intent.ACTION_SEND);
-			shareIntent.setType("text/plain");
-			shareIntent.putExtra(Intent.EXTRA_TEXT, "Девелопер ответил: " + note + "." +
-					" Оригинальная цитата доступна здесь: " + links.get(number));
-					
-			mShareActionProvider.setShareIntent(shareIntent);
-			
-			return true;	
-		}
-			
-		default:
-			return super.onOptionsItemSelected(item);
-		}
-		
-	}
-	
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.main, menu);
-		
-		shareItem = (MenuItem) menu.findItem(R.id.i_share);
-		
-		return true;
-	}
-	
-	public boolean AlertDialog() {
-	AlertDialog.Builder builder = new AlertDialog.Builder(this);
-	builder.setTitle("О приложении DevAnswers").setMessage("Автор приложения - Taurusha." +
-			" Оригинальные цитаты достуны на сайте devanswers.ru." +
-			" Все права на используемый материал принадлежат его владельцу. ")
-	                        .setCancelable(false)
-	        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-	            public void onClick(DialogInterface dialog, int id) {
-	                // do something if OK
-	            }
-	        });
-	builder.create().show();
-	return false;
-	}
-	
-	class MyTask extends AsyncTask<Void, Void, Void> {
-
-		@Override
-		protected void onPreExecute() {
-			super.onPreExecute();			
-		}
-
-		@Override
-		protected Void doInBackground(Void... params) {
-								
-			try {				
-				
-				links();				
 				Document doc = null;
 	            doc = Jsoup.connect((String) links.get(number)).get();
-	            element = doc.select("h1 > a > span");
-	            note = element.tagName("span").text();   
+	            Elements element = doc.select("h1 > a > span");
+	            note = element.tagName("span").text();   	          
 	            
 	        } catch (IOException e) {
 	            e.printStackTrace();
