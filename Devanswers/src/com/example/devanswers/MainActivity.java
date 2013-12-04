@@ -11,6 +11,7 @@ import org.jsoup.select.Elements;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -42,36 +43,37 @@ public class MainActivity extends Activity  {
 	int number = 0;
 	Elements element;
 	MenuItem shareItem;
+	ProgressDialog ProgressDialog;
+	private boolean parsingSuccessful = true;
+	TextView NodeText;
 	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 			
 		final Animation anim = AnimationUtils.loadAnimation(this, R.anim.shake);
-		final TextView NodeText = (TextView)findViewById(R.id.NodeText);
+		NodeText = (TextView)findViewById(R.id.NodeText);
 		
 		DevMainImage = (ImageView) findViewById(R.id.DevMainImage);
 		DevMainImage2 = (ImageView) findViewById(R.id.DevMainImage2);
-		
-		DevMain = new MyTask();
-		DevMain.execute();
-		NodeText.setText(note);
-		
-		if (isOnline() == false) {
 
-			Toast toast = Toast.makeText(getApplicationContext(),
-					R.string.connection, Toast.LENGTH_SHORT);
-			toast.show();
-		}
-		
 		OnClickListener onClick = new OnClickListener() {
 			public void onClick(View v) {
 				
-				colors();
-				DevMainImage.startAnimation(anim);
-				DevMain = new MyTask();
-				DevMain.execute();
-				NodeText.setText(note);			
+				if (isOnline() == false) {
+
+					Toast toast = Toast.makeText(getApplicationContext(),
+							R.string.connection, Toast.LENGTH_SHORT);
+					toast.show();
+				}
+				
+				else {
+												
+					DevMainImage.startAnimation(anim);
+					DevMain = new MyTask();
+					DevMain.execute();	
+					
+				}
 				
 			}
 		};
@@ -1384,7 +1386,14 @@ public class MainActivity extends Activity  {
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();			
-		}
+			
+			ProgressDialog = new ProgressDialog(MainActivity.this);
+			ProgressDialog.setMessage("Загрузка...");
+			ProgressDialog.setIndeterminate(true);
+			ProgressDialog.setCancelable(false);
+			ProgressDialog.show();	
+			
+	}
 
 		@Override
 		protected Void doInBackground(Void... params) {
@@ -1395,8 +1404,9 @@ public class MainActivity extends Activity  {
 				Document doc = null;
 	            doc = Jsoup.connect((String) links.get(number)).get();
 	            element = doc.select("h1 > a > span");
-	            note = element.tagName("span").text();   
+	            note = element.tagName("span").text(); 
 	            
+				
 	        } catch (IOException e) {
 	            e.printStackTrace();
 	        }
@@ -1408,7 +1418,18 @@ public class MainActivity extends Activity  {
 		@Override
 		protected void onPostExecute(Void result) {
 			super.onPostExecute(result);
+			
+			if (parsingSuccessful == true){
+	            if (ProgressDialog.isShowing()){
+	            	ProgressDialog.dismiss();
+	            }
+			}
+			
+			NodeText.setText(note);
+			colors();
+			
 		}
 	}
 
 }
+
