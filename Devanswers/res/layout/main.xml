@@ -51,12 +51,13 @@
         android:contentDescription="@string/decsription"
         android:src="@drawable/logo_two" />
 
-    <TextView
+ <!--    <TextView
         android:id="@+id/Linkid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/DevMainImage2"
         android:layout_centerHorizontal="true"
-        android:text="" />
+        android:text="" /> 
+ -->	 
 
 </RelativeLayout>
