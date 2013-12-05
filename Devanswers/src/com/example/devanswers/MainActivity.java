@@ -796,9 +796,11 @@ public class MainActivity extends Activity {
 		links.add("http://devanswers.ru/a/Id");
 		links.add("http://devanswers.ru/a/Tb");
 		links.add("http://devanswers.ru/a/yg");
+		links.add("http://devanswers.ru/a/Df");
 		links.add("http://devanswers.ru/a/sj");
 		links.add("http://devanswers.ru/a/pg");
 		links.add("http://devanswers.ru/a/kh");
+		links.add("http://devanswers.ru/a/yh");
 		links.add("http://devanswers.ru/a/rg");
 		links.add("http://devanswers.ru/a/rf");
 		links.add("http://devanswers.ru/a/Bd");
@@ -808,6 +810,7 @@ public class MainActivity extends Activity {
 		links.add("http://devanswers.ru/a/Xi");
 		links.add("http://devanswers.ru/a/2j");
 		links.add("http://devanswers.ru/a/6f");
+		links.add("http://devanswers.ru/a/ni");
 		links.add("http://devanswers.ru/a/Eb");
 		links.add("http://devanswers.ru/a/Lg");
 		links.add("http://devanswers.ru/a/4b");
@@ -874,6 +877,7 @@ public class MainActivity extends Activity {
 		links.add("http://devanswers.ru/a/tc");
 		links.add("http://devanswers.ru/a/Fi");
 		links.add("http://devanswers.ru/a/ee");
+		links.add("http://devanswers.ru/a/dd");
 		links.add("http://devanswers.ru/a/he");
 		links.add("http://devanswers.ru/a/uf");
 		links.add("http://devanswers.ru/a/Hd");
@@ -986,6 +990,7 @@ public class MainActivity extends Activity {
 		links.add("http://devanswers.ru/a/nj");
 		links.add("http://devanswers.ru/a/Af");
 		links.add("http://devanswers.ru/a/ve");
+		links.add("http://devanswers.ru/a/ud");
 		links.add("http://devanswers.ru/a/Mb");
 		links.add("http://devanswers.ru/a/mj");
 		links.add("http://devanswers.ru/a/Dd");
@@ -1026,6 +1031,7 @@ public class MainActivity extends Activity {
 		links.add("http://devanswers.ru/a/Ng");
 		links.add("http://devanswers.ru/a/Rc");
 		links.add("http://devanswers.ru/a/dj");
+		links.add("http://devanswers.ru/a/wd");
 		links.add("http://devanswers.ru/a/Gc");
 		links.add("http://devanswers.ru/a/nf");
 		links.add("http://devanswers.ru/a/Mi");
@@ -1040,6 +1046,7 @@ public class MainActivity extends Activity {
 		links.add("http://devanswers.ru/a/hc");
 		links.add("http://devanswers.ru/a/ui");
 		links.add("http://devanswers.ru/a/Ue");
+		links.add("http://devanswers.ru/a/Xb");
 		links.add("http://devanswers.ru/a/Mh");
 		links.add("http://devanswers.ru/a/gh");
 		links.add("http://devanswers.ru/a/ef");
@@ -1048,6 +1055,7 @@ public class MainActivity extends Activity {
 		links.add("http://devanswers.ru/a/Wf");
 		links.add("http://devanswers.ru/a/Wh");
 		links.add("http://devanswers.ru/a/1c");
+		links.add("http://devanswers.ru/a/ob");
 		links.add("http://devanswers.ru/a/ch");
 		links.add("http://devanswers.ru/a/qi");
 		links.add("http://devanswers.ru/a/pd");
@@ -1104,6 +1112,7 @@ public class MainActivity extends Activity {
 		links.add("http://devanswers.ru/a/Sf");
 		links.add("http://devanswers.ru/a/Kg");
 		links.add("http://devanswers.ru/a/Fc");
+		links.add("http://devanswers.ru/a/Kd");
 		links.add("http://devanswers.ru/a/yc");
 		links.add("http://devanswers.ru/a/Cg");
 		links.add("http://devanswers.ru/a/9i");
@@ -1169,6 +1178,7 @@ public class MainActivity extends Activity {
 		links.add("http://devanswers.ru/a/ij");
 		links.add("http://devanswers.ru/a/Kb");
 		links.add("http://devanswers.ru/a/ag");
+		links.add("http://devanswers.ru/a/Ff");
 		links.add("http://devanswers.ru/a/rj");
 		links.add("http://devanswers.ru/a/ze");
 		links.add("http://devanswers.ru/a/Ig");
@@ -1230,7 +1240,7 @@ public class MainActivity extends Activity {
 		links.add("http://devanswers.ru/a/xc");
 
 		Random rand = new Random();
-		number = rand.nextInt(440);
+		number = rand.nextInt(450);
 
 		return (number);
 
