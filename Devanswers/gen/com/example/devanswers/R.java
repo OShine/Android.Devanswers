@@ -11,6 +11,10 @@ public final class R {
     public static final class anim {
         public static final int shake=0x7f040000;
     }
+    public static final class array {
+        public static final int colors_list=0x7f070001;
+        public static final int links_list=0x7f070000;
+    }
     public static final class attr {
     }
     public static final class dimen {
@@ -30,19 +34,19 @@ public final class R {
         public static final int logo_two=0x7f020003;
     }
     public static final class id {
-        public static final int DevMainImage=0x7f090004;
-        public static final int DevMainImage2=0x7f090002;
-        public static final int NodeText=0x7f090003;
-        public static final int RelativeLayout=0x7f090000;
-        public static final int i_about=0x7f090005;
-        public static final int i_share=0x7f090006;
-        public static final int logotext=0x7f090001;
+        public static final int DevMainImage=0x7f0a0004;
+        public static final int DevMainImage2=0x7f0a0002;
+        public static final int NodeText=0x7f0a0003;
+        public static final int RelativeLayout=0x7f0a0000;
+        public static final int i_about=0x7f0a0005;
+        public static final int i_share=0x7f0a0006;
+        public static final int logotext=0x7f0a0001;
     }
     public static final class layout {
         public static final int main=0x7f030000;
     }
     public static final class menu {
-        public static final int main=0x7f080000;
+        public static final int main=0x7f090000;
     }
     public static final class string {
         public static final int about_menu=0x7f060003;
@@ -50,11 +54,12 @@ public final class R {
         public static final int connection=0x7f060005;
         public static final int decsription=0x7f060002;
         public static final int main_title=0x7f060001;
+        public static final int main_url=0x7f060007;
         public static final int share=0x7f060006;
         public static final int update_menu=0x7f060004;
     }
     public static final class style {
-        public static final int AppBaseTheme=0x7f070000;
-        public static final int AppTheme=0x7f070001;
+        public static final int AppBaseTheme=0x7f080000;
+        public static final int AppTheme=0x7f080001;
     }
 }
