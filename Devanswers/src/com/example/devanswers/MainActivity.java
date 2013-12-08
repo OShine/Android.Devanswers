@@ -96,7 +96,7 @@ public class MainActivity extends Activity {
 	
 	
 	public int links() {
-		links= new ArrayList<String>(Arrays.asList(getResources().getStringArray(R.array.links_list)));
+		  links= new ArrayList<String>(Arrays.asList(getResources().getStringArray(R.array.links_list)));
 		  Random rand = new Random();
 		  number = rand.nextInt(450);
 		  return (number);
@@ -188,10 +188,9 @@ public class MainActivity extends Activity {
 
 			try {
 				
-				String nestedUrl = getResources().getString(R.string.main_url)+links.get(number);
 				links();
 				Document doc = null;
-				doc = Jsoup.connect((String) nestedUrl).get();
+				doc = Jsoup.connect((String) "http://devanswers.ru/a/" + links.get(number)).get();
 				element = doc.select("h1 > a > span");
 				note = element.tagName("span").text();
 
