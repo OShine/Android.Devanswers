@@ -57,6 +57,10 @@ public class MainActivity extends Activity {
 
 		DevMainImage = (ImageView) findViewById(R.id.DevMainImage);
 		DevMainImage2 = (ImageView) findViewById(R.id.DevMainImage2);
+		
+		  colors =  new ArrayList<String>(Arrays.asList(getResources().
+				  getStringArray(R.array.colors_list)));
+		  links= new ArrayList<String>(Arrays.asList(getResources().getStringArray(R.array.links_list)));
 
 		OnClickListener onClick = new OnClickListener() {
 			public void onClick(View v) {
@@ -83,7 +87,7 @@ public class MainActivity extends Activity {
 	}
 
 	public void colors() {
-		  colors =  new ArrayList<String>(Arrays.asList(getResources().getStringArray(R.array.colors_list)));
+	
 		 // final TextView LinkID = (TextView) findViewById(R.id.Linkid);
 		  final RelativeLayout RelLay = (RelativeLayout) findViewById(R.id.RelativeLayout);
 		  Random randomcolors = new Random();
@@ -96,7 +100,7 @@ public class MainActivity extends Activity {
 	
 	
 	public int links() {
-		  links= new ArrayList<String>(Arrays.asList(getResources().getStringArray(R.array.links_list)));
+		 
 		  Random rand = new Random();
 		  number = rand.nextInt(450);
 		  return (number);
@@ -128,10 +132,15 @@ public class MainActivity extends Activity {
 			Intent shareIntent = new Intent(Intent.ACTION_SEND);
 			shareIntent.setAction(Intent.ACTION_SEND);
 			shareIntent.setType("text/plain");
+			
+			if (note == null) 
+				shareIntent.putExtra(Intent.EXTRA_TEXT, "Девелопер ответил."
+						+ " Оригинальные цитаты доступны здесь: http://devanswers.ru/");
+			else 			
 			shareIntent.putExtra(Intent.EXTRA_TEXT, "Девелопер ответил: "
 					+ note + "." + " Оригинальная цитата доступна здесь: "
 					+ nestedUrl);
-
+				
 			mShareActionProvider.setShareIntent(shareIntent);
 
 			return true;
