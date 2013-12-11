@@ -36,7 +36,7 @@ public class MainActivity extends Activity {
 
 	ImageView DevMainImage;
 	ImageView DevMainImage2;
-//	TextView LinkID;
+	// TextView LinkID;
 	MyTask DevMain;
 	String note;
 	List<String> colors = new ArrayList<String>();
@@ -57,10 +57,6 @@ public class MainActivity extends Activity {
 
 		DevMainImage = (ImageView) findViewById(R.id.DevMainImage);
 		DevMainImage2 = (ImageView) findViewById(R.id.DevMainImage2);
-		
-		  colors =  new ArrayList<String>(Arrays.asList(getResources().
-				  getStringArray(R.array.colors_list)));
-		  links= new ArrayList<String>(Arrays.asList(getResources().getStringArray(R.array.links_list)));
 
 		OnClickListener onClick = new OnClickListener() {
 			public void onClick(View v) {
@@ -87,25 +83,39 @@ public class MainActivity extends Activity {
 	}
 
 	public void colors() {
-	
-		 // final TextView LinkID = (TextView) findViewById(R.id.Linkid);
-		  final RelativeLayout RelLay = (RelativeLayout) findViewById(R.id.RelativeLayout);
-		  Random randomcolors = new Random();
-		  final int generatedRandomNum = randomcolors.nextInt(691);
-		 // LinkID.setText(Integer.toString(generatedRandomNum));
-		  RelLay.setBackgroundColor(Color.parseColor(colors
-		    .get(generatedRandomNum)));
-		  colors.clear();
-	 }
-	
-	
-	public int links() {
-		 
-		  Random rand = new Random();
-		  number = rand.nextInt(450);
-		  return (number);
+
+		int i = 0;
+		if (i == 0) {
+			colors = new ArrayList<String>(Arrays.asList(getResources()
+					.getStringArray(R.array.colors_list)));
+			i++;
+
+		}
+		
+		// final TextView LinkID = (TextView) findViewById(R.id.Linkid);
+		RelativeLayout RelLay = (RelativeLayout) findViewById(R.id.RelativeLayout);
+		Random randomcolors = new Random();
+		int generatedRandomNum = randomcolors.nextInt(691);
+		// LinkID.setText(Integer.toString(generatedRandomNum));
+		RelLay.setBackgroundColor(Color.parseColor(colors
+				.get(generatedRandomNum)));
+		colors.clear();
 	}
-	
+
+	public int links() {
+		
+		int i = 0;
+		if (i == 0) {
+		links = new ArrayList<String>(Arrays.asList(getResources()
+				.getStringArray(R.array.links_list)));
+			i++;
+		}
+		
+		Random rand = new Random();
+		number = rand.nextInt(450);
+		return (number);
+	}
+
 	public boolean isOnline() {
 		String cs = Context.CONNECTIVITY_SERVICE;
 		ConnectivityManager cm = (ConnectivityManager) getSystemService(cs);
@@ -126,21 +136,25 @@ public class MainActivity extends Activity {
 
 			ShareActionProvider mShareActionProvider = (ShareActionProvider) shareItem
 					.getActionProvider();
-			
-			String nestedUrl = getResources().getString(R.string.main_url)+links.get(number);
+
+			String nestedUrl = getResources().getString(R.string.main_url)
+					+ links.get(number);
 
 			Intent shareIntent = new Intent(Intent.ACTION_SEND);
 			shareIntent.setAction(Intent.ACTION_SEND);
 			shareIntent.setType("text/plain");
-			
-			if (note == null) 
-				shareIntent.putExtra(Intent.EXTRA_TEXT, "Девелопер ответил."
-						+ " Оригинальные цитаты доступны здесь: http://devanswers.ru/");
-			else 			
-			shareIntent.putExtra(Intent.EXTRA_TEXT, "Девелопер ответил: "
-					+ note + "." + " Оригинальная цитата доступна здесь: "
-					+ nestedUrl);
-				
+
+			if (note == null)
+				shareIntent
+						.putExtra(
+								Intent.EXTRA_TEXT,
+								"Девелопер ответил."
+										+ " Оригинальные цитаты доступны здесь: http://devanswers.ru/");
+			else
+				shareIntent.putExtra(Intent.EXTRA_TEXT, "Девелопер ответил: "
+						+ note + "." + " Оригинальная цитата доступна здесь: "
+						+ nestedUrl);
+
 			mShareActionProvider.setShareIntent(shareIntent);
 
 			return true;
@@ -196,10 +210,12 @@ public class MainActivity extends Activity {
 		protected Void doInBackground(Void... params) {
 
 			try {
-				
+
 				links();
 				Document doc = null;
-				doc = Jsoup.connect((String) "http://devanswers.ru/a/" + links.get(number)).get();
+				doc = Jsoup.connect(
+						(String) "http://devanswers.ru/a/" + links.get(number))
+						.get();
 				element = doc.select("h1 > a > span");
 				note = element.tagName("span").text();
 
