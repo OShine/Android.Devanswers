@@ -57,6 +57,11 @@ public class MainActivity extends Activity {
 
 		DevMainImage = (ImageView) findViewById(R.id.DevMainImage);
 		DevMainImage2 = (ImageView) findViewById(R.id.DevMainImage2);
+		
+		colors = new ArrayList<String>(Arrays.asList(getResources()
+				.getStringArray(R.array.colors_list)));
+		links = new ArrayList<String>(Arrays.asList(getResources()
+				.getStringArray(R.array.links_list)));
 
 		OnClickListener onClick = new OnClickListener() {
 			public void onClick(View v) {
