@@ -36,7 +36,7 @@ public class MainActivity extends Activity {
 
 	ImageView DevMainImage;
 	ImageView DevMainImage2;
-	// TextView LinkID;
+	TextView LinkID; //
 	MyTask DevMain;
 	String note;
 	List<String> colors = new ArrayList<String>();
@@ -97,13 +97,16 @@ public class MainActivity extends Activity {
 
 		}
 		
-		// final TextView LinkID = (TextView) findViewById(R.id.Linkid);
+	//	final TextView LinkID = (TextView) findViewById(R.id.Linkid); 
 		RelativeLayout RelLay = (RelativeLayout) findViewById(R.id.RelativeLayout);
 		Random randomcolors = new Random();
-		int generatedRandomNum = randomcolors.nextInt(691);
-		// LinkID.setText(Integer.toString(generatedRandomNum));
+		int generatedRandomNum = randomcolors.nextInt(543);
+		
+	
+	//	LinkID.setText(Integer.toString(generatedRandomNum)); 
 		RelLay.setBackgroundColor(Color.parseColor(colors
 				.get(generatedRandomNum)));
+		generatedRandomNum++;
 		colors.clear();
 	}
 
@@ -247,5 +250,6 @@ public class MainActivity extends Activity {
 
 		}
 	}
+
 
 }

@@ -8,7 +8,6 @@
     <string name="update_menu">Обновить совет</string>
     <string name="connection">Отсутствует доступ к сети</string>
     <string name="share">Поделиться</string>
-
     <string name="main_url">http://devanswers.ru/a/</string>
 
     <string-array name="links_list">
@@ -463,37 +462,26 @@
         <item>sg</item>
         <item>xc</item>
     </string-array>
-
     <string-array name="colors_list">
         <item>#5D8AA8"</item>
-        <item>#F0F8FF"</item>
         <item>#6CC417"</item>
-        <item>#FFBF00"</item>
         <item>#FF033E"</item>
         <item>#9966CC"</item>
         <item>#A4C639"</item>
         <item>#CD9575"</item>
-        <item>#7FFFD4"</item>
         <item>#827B60"</item>
         <item>#4B5320"</item>
-        <item>#B2BEB5"</item>
-        <item>#FDEE00"</item>
         <item>#6E7F80"</item>
         <item>#B2C248"</item>
         <item>#FF2052"</item>
         <item>#893BFF"</item>
         <item>#007FFF"</item>
-        <item>#89CFF0"</item>
-        <item>#A1CAF1"</item>
-        <item>#FFE135"</item>
         <item>#C25283"</item>
         <item>#F88158"</item>
         <item>#848482"</item>
         <item>#98777B"</item>
         <item>#F75D59"</item>
         <item>#9F8170"</item>
-        <item>#E9AB17"</item>
-        <item>#FBB117"</item>
         <item>#4C787E"</item>
         <item>#3D2B1F"</item>
         <item>#FE6F5E"</item>
@@ -501,52 +489,38 @@
         <item>#4C4646"</item>
         <item>#463E3F"</item>
         <item>#318CE7"</item>
-        <item>#ACE5EE"</item>
         <item>#7E3517"</item>
-        <item>#F9B7FF"</item>
-        <item>#B7CEEC"</item>
         <item>#A2A2D0"</item>
         <item>#4EE2EC"</item>
         <item>#157DEC"</item>
         <item>#1569C7"</item>
-        <item>#98AFC7"</item>
         <item>#0D98BA"</item>
-        <item>#77BFC7"</item>
         <item>#3090C7"</item>
         <item>#2B547E"</item>
-        <item>#8EEBEC"</item>
         <item>#6960EC"</item>
         <item>#1F45FC"</item>
         <item>#8A2BE2"</item>
         <item>#306EFF"</item>
-        <item>#57FEFF"</item>
         <item>#0041C2"</item>
         <item>#DE5D83"</item>
-        <item>#E6A9EC"</item>
         <item>#E56E94"</item>
         <item>#79443B"</item>
-        <item>#E3DAC9"</item>
         <item>#006A4E"</item>
         <item>#873260"</item>
         <item>#0070FF"</item>
         <item>#B5A642"</item>
         <item>#CB4154"</item>
-        <item>#66FF00"</item>
         <item>#BF94E4"</item>
         <item>#C32148"</item>
         <item>#F433FF"</item>
-        <item>#08E8DE"</item>
-        <item>#D19FE8"</item>
         <item>#FF55A3"</item>
         <item>#FB607F"</item>
         <item>#004225"</item>
         <item>#CD7F32"</item>
         <item>#835C3B"</item>
         <item>#E2A76F"</item>
-        <item>#F0DC82"</item>
         <item>#480607"</item>
         <item>#8C001A"</item>
-        <item>#DEB887"</item>
         <item>#CC5500"</item>
         <item>#C12267"</item>
         <item>#E97451"</item>
@@ -559,11 +533,9 @@
         <item>#91A3B0"</item>
         <item>#E38AAE"</item>
         <item>#006B3C"</item>
-        <item>#FFF600"</item>
         <item>#4B3621"</item>
         <item>#1E4D2B"</item>
         <item>#A3C1AD"</item>
-        <item>#FFEF00"</item>
         <item>#FF0800"</item>
         <item>#E4717A"</item>
         <item>#FFA62F"</item>
@@ -572,16 +544,13 @@
         <item>#C68E17"</item>
         <item>#625D5D"</item>
         <item>#C41E3A"</item>
-        <item>#00CC99"</item>
         <item>#FF0040"</item>
         <item>#EB4C42"</item>
         <item>#FF0038"</item>
         <item>#C12283"</item>
-        <item>#FFA6C9"</item>
         <item>#F778A1"</item>
         <item>#99BADD"</item>
         <item>#ED9121"</item>
-        <item>#B2FFFF"</item>
         <item>#4997D0"</item>
         <item>#EC3B83"</item>
         <item>#007BA7"</item>
@@ -589,10 +558,7 @@
         <item>#007AA5"</item>
         <item>#E03C31"</item>
         <item>#A0785A"</item>
-        <item>#FAD6A5"</item>
-        <item>#8AFB17"</item>
         <item>#DE3163"</item>
-        <item>#FFB7C5"</item>
         <item>#C24641"</item>
         <item>#CD5C5C"</item>
         <item>#C34A2C"</item>
@@ -601,13 +567,11 @@
         <item>#FFA700"</item>
         <item>#98817B"</item>
         <item>#E34234"</item>
-        <item>#E4D00A"</item>
         <item>#6D6968"</item>
         <item>#3EA055"</item>
         <item>#0047AB"</item>
         <item>#0020C2"</item>
         <item>#6F4E37"</item>
-        <item>#9BDDFF"</item>
         <item>#F87431"</item>
         <item>#C7A317"</item>
         <item>#002E63"</item>
@@ -616,19 +580,14 @@
         <item>#996666"</item>
         <item>#FF3800"</item>
         <item>#FF7F50"</item>
-        <item>#AFDCEC"</item>
         <item>#F88379"</item>
         <item>#FF4040"</item>
-        <item>#FFF380"</item>
         <item>#B31B1B"</item>
         <item>#9ACEEB"</item>
-        <item>#FCDFFF"</item>
         <item>#9F000F"</item>
         <item>#DC143C"</item>
         <item>#BE0032"</item>
         <item>#990000"</item>
-        <item>#FFFF31"</item>
-        <item>#F0E130"</item>
         <item>#00008B"</item>
         <item>#654321"</item>
         <item>#5D3954"</item>
@@ -672,7 +631,6 @@
         <item>#177245"</item>
         <item>#918151"</item>
         <item>#FFA812"</item>
-        <item>#CC4E5C"</item>
         <item>#00CED1"</item>
         <item>#3B9C9C"</item>
         <item>#842DCE"</item>
@@ -683,7 +641,6 @@
         <item>#A9203E"</item>
         <item>#EF3038"</item>
         <item>#E9692C"</item>
-        <item>#FAD6A5"</item>
         <item>#B94E48"</item>
         <item>#704241"</item>
         <item>#C154C1"</item>
@@ -691,23 +648,17 @@
         <item>#9955BB"</item>
         <item>#FF1493"</item>
         <item>#FF9933"</item>
-        <item>#3BB9FF"</item>
         <item>#1560BD"</item>
         <item>#79BAEC"</item>
-        <item>#EDC9AF"</item>
         <item>#696969"</item>
         <item>#E3319D"</item>
         <item>#1E90FF"</item>
-        <item>#6AFB92"</item>
         <item>#00009C"</item>
         <item>#7F525D"</item>
         <item>#0000A0"</item>
-        <item>#00FF00"</item>
-        <item>#F4BBFF"</item>
         <item>#BF00FF"</item>
         <item>#3F00FF"</item>
         <item>#8F00FF"</item>
-        <item>#5FFB17"</item>
         <item>#96C8A2"</item>
         <item>#C8B560"</item>
         <item>#801818"</item>
@@ -723,7 +674,6 @@
         <item>#CE2029"</item>
         <item>#B22222"</item>
         <item>#E25822"</item>
-        <item>#CCFF00"</item>
         <item>#FF004F"</item>
         <item>#228B22"</item>
         <item>#A67B5B"</item>
@@ -734,102 +684,72 @@
         <item>#FF00FF"</item>
         <item>#FF77FF"</item>
         <item>#E48400"</item>
-        <item>#DCDCDC"</item>
         <item>#E49B0F"</item>
         <item>#B06500"</item>
         <item>#C9BE62"</item>
-        <item>#E6E8FA"</item>
         <item>#D4A017"</item>
         <item>#EAC117"</item>
         <item>#996515"</item>
-        <item>#A8E4A0"</item>
         <item>#5E5A80"</item>
         <item>#DC381F"</item>
         <item>#465945"</item>
         <item>#B6B6B4"</item>
-        <item>#D1D0CE"</item>
         <item>#504A4B"</item>
         <item>#5E7D7E"</item>
         <item>#4CC417"</item>
         <item>#1164B4"</item>
         <item>#6AA121"</item>
-        <item>#ADFF2F"</item>
         <item>#307D7E"</item>
         <item>#808080"</item>
-        <item>#00FF7F"</item>
         <item>#E66C2C"</item>
         <item>#446CCF"</item>
-        <item>#3FFF00"</item>
         <item>#C90016"</item>
-        <item>#EDE275"</item>
         <item>#617C58"</item>
         <item>#DF73FF"</item>
-        <item>#F0FFF0"</item>
         <item>#49796B"</item>
         <item>#FF1DCE"</item>
         <item>#F660AB"</item>
-        <item>#7FE817"</item>
         <item>#355E3B"</item>
-        <item>#FCF75E"</item>
         <item>#9CB071"</item>
-        <item>#B2EC5D"</item>
         <item>#138808"</item>
         <item>#E3A857"</item>
         <item>#4B0082"</item>
         <item>#002FA7"</item>
-        <item>#F4F0EC"</item>
-        <item>#5EFB6E"</item>
-        <item>#F8DE7E"</item>
         <item>#D73B3E"</item>
         <item>#A50B5E"</item>
         <item>#A0CFEC"</item>
         <item>#46C7C7"</item>
-        <item>#FADA5E"</item>
-        <item>#BDDA57"</item>
         <item>#29AB87"</item>
         <item>#4CC552"</item>
         <item>#C3B091"</item>
         <item>#C5908E"</item>
-        <item>#D6CADD"</item>
         <item>#15317E"</item>
-        <item>#FEFE22"</item>
         <item>#A9BA9D"</item>
         <item>#CF1020"</item>
-        <item>#CCCCFF"</item>
         <item>#C4C3D0"</item>
         <item>#9457EB"</item>
         <item>#FBAED2"</item>
-        <item>#EBDDE2"</item>
-        <item>#FFF44F"</item>
-        <item>#FDD5B1"</item>
-        <item>#ADDFFF"</item>
         <item>#B5651D"</item>
         <item>#E66771"</item>
         <item>#E77471"</item>
         <item>#F08080"</item>
         <item>#93CCEA"</item>
-        <item>#E0FFFF"</item>
-        <item>#FAFAD2"</item>
-        <item>#F0E68C"</item>
         <item>#B19CD9"</item>
         <item>#FFB6C1"</item>
         <item>#FFA07A"</item>
         <item>#FF9999"</item>
-        <item>#CCFFFF"</item>
         <item>#736AFF"</item>
         <item>#778899"</item>
         <item>#728FCE"</item>
         <item>#B38B6D"</item>
         <item>#E68FAC"</item>
         <item>#C8A2C8"</item>
-        <item>#FAF0E6"</item>
         <item>#C48793"</item>
         <item>#534B4F"</item>
         <item>#E41B17"</item>
         <item>#7F38EC"</item>
         <item>#E62020"</item>
         <item>#FFBD88"</item>
-        <item>#FBEC5D"</item>
         <item>#6050DC"</item>
         <item>#979AAA"</item>
         <item>#FF8040"</item>
@@ -842,8 +762,6 @@
         <item>#EF98AA"</item>
         <item>#73C2FB"</item>
         <item>#E5B73B"</item>
-        <item>#66DDAA"</item>
-        <item>#F3E5AB"</item>
         <item>#035096"</item>
         <item>#347235"</item>
         <item>#1C352D"</item>
@@ -854,33 +772,22 @@
         <item>#BB3385"</item>
         <item>#3CB371"</item>
         <item>#7B68EE"</item>
-        <item>#C9DC87"</item>
         <item>#348017"</item>
         <item>#674C47"</item>
         <item>#0054B4"</item>
-        <item>#48D1CC"</item>
-        <item>#FDBCB4"</item>
         <item>#BCC6CC"</item>
         <item>#2B1B17"</item>
         <item>#191970"</item>
         <item>#004953"</item>
-        <item>#98FF98"</item>
         <item>#646D7E"</item>
-        <item>#FBBBB9"</item>
         <item>#827839"</item>
         <item>#493D26"</item>
         <item>#73A9C2"</item>
-        <item>#ADDFAD"</item>
         <item>#30BA8F"</item>
         <item>#997A8D"</item>
         <item>#18453B"</item>
-        <item>#FFDB58"</item>
         <item>#21421E"</item>
-        <item>#59E817"</item>
         <item>#FFA343"</item>
-        <item>#39FF14"</item>
-        <item>#F535AA"</item>
-        <item>#A4DDED"</item>
         <item>#059033"</item>
         <item>#78C7C7"</item>
         <item>#806517"</item>
@@ -889,20 +796,14 @@
         <item>#CC7722"</item>
         <item>#008000"</item>
         <item>#3B3131"</item>
-        <item>#FDF5E6"</item>
         <item>#796878"</item>
         <item>#673147"</item>
         <item>#C08081"</item>
         <item>#808000"</item>
         <item>#6B8E23"</item>
-        <item>#BAB86C"</item>
         <item>#9AB973"</item>
         <item>#0F0F0F"</item>
         <item>#B784A7"</item>
-        <item>#FFA500"</item>
-        <item>#FF9F00"</item>
-        <item>#FF4500"</item>
-        <item>#F8D568"</item>
         <item>#DA70D6"</item>
         <item>#414A4C"</item>
         <item>#FF6E4A"</item>
@@ -910,31 +811,17 @@
         <item>#1CA9C9"</item>
         <item>#006600"</item>
         <item>#273BE2"</item>
-        <item>#CFECEC"</item>
         <item>#987654"</item>
         <item>#AF4035"</item>
         <item>#9BC4E2"</item>
         <item>#DDADAF"</item>
-        <item>#ABCDEF"</item>
-        <item>#DCD0FF"</item>
-        <item>#FADADD"</item>
-        <item>#96DED1"</item>
-        <item>#ECEBBD"</item>
         <item>#BC987E"</item>
         <item>#78184A"</item>
         <item>#E56717"</item>
         <item>#50C878"</item>
-        <item>#B4CFEC"</item>
         <item>#836953"</item>
-        <item>#CFCFC4"</item>
-        <item>#77DD77"</item>
         <item>#F49AC2"</item>
-        <item>#FFD1DC"</item>
         <item>#B39EB5"</item>
-        <item>#FDFD96"</item>
-        <item>#FADFAD"</item>
-        <item>#EAE0C8"</item>
-        <item>#E6E200"</item>
         <item>#1C39BB"</item>
         <item>#32127A"</item>
         <item>#D99058"</item>
@@ -943,7 +830,6 @@
         <item>#CC3333"</item>
         <item>#FE28A2"</item>
         <item>#000F89"</item>
-        <item>#FDDDE6"</item>
         <item>#01796F"</item>
         <item>#387C44"</item>
         <item>#FAAFBE"</item>
@@ -955,11 +841,9 @@
         <item>#E7A1B0"</item>
         <item>#F78FA7"</item>
         <item>#93C572"</item>
-        <item>#E5E4E2"</item>
         <item>#B93B8F"</item>
         <item>#7D0541"</item>
         <item>#583759"</item>
-        <item>#C6DEFF"</item>
         <item>#FF8F00"</item>
         <item>#003153"</item>
         <item>#DF00FF"</item>
@@ -990,19 +874,15 @@
         <item>#D68A59"</item>
         <item>#FF33CC"</item>
         <item>#E3256B"</item>
-        <item>#FF0000"</item>
         <item>#A52A2A"</item>
         <item>#7F5217"</item>
         <item>#FF5349"</item>
         <item>#C71585"</item>
-        <item>#990012"</item>
         <item>#004040"</item>
-        <item>#D70040"</item>
         <item>#0892D0"</item>
         <item>#B666D2"</item>
         <item>#B03060"</item>
         <item>#414833"</item>
-        <item>#1FCECB"</item>
         <item>#C12869"</item>
         <item>#E8ADAA"</item>
         <item>#F9429E"</item>
@@ -1019,7 +899,6 @@
         <item>#7F4E52"</item>
         <item>#0038A8"</item>
         <item>#2B60DE"</item>
-        <item>#FFD801"</item>
         <item>#E0115F"</item>
         <item>#F62217"</item>
         <item>#FF0028"</item>
@@ -1031,13 +910,10 @@
         <item>#00563F"</item>
         <item>#8B4513"</item>
         <item>#FF6700"</item>
-        <item>#FBB917"</item>
-        <item>#A1C935"</item>
         <item>#FF8C69"</item>
         <item>#FF91A4"</item>
         <item>#C2B280"</item>
         <item>#786D5F"</item>
-        <item>#ECD540"</item>
         <item>#EE9A4D"</item>
         <item>#967117"</item>
         <item>#7E3817"</item>
@@ -1045,16 +921,13 @@
         <item>#0F52BA"</item>
         <item>#2554C7"</item>
         <item>#CBA135"</item>
-        <item>#C2DFFF"</item>
         <item>#2E8B57"</item>
         <item>#438D80"</item>
         <item>#321414"</item>
         <item>#437C17"</item>
         <item>#CC6600"</item>
-        <item>#FFBA00"</item>
         <item>#7F462C"</item>
         <item>#8A795D"</item>
-        <item>#45CEA2"</item>
         <item>#347C17"</item>
         <item>#E55B3C"</item>
         <item>#FC0FC0"</item>
@@ -1065,32 +938,20 @@
         <item>#6698FF"</item>
         <item>#CF71AF"</item>
         <item>#737CA1"</item>
-        <item>#BCE954"</item>
         <item>#726E6D"</item>
         <item>#933D41"</item>
         <item>#100C08"</item>
-        <item>#A7FC00"</item>
         <item>#4AA02C"</item>
-        <item>#FFCC33"</item>
         <item>#E67451"</item>
-        <item>#FAD6A5"</item>
-        <item>#ECE5B6"</item>
         <item>#F94D00"</item>
-        <item>#FFCC00"</item>
         <item>#483C32"</item>
-        <item>#D0F0C0"</item>
-        <item>#F4C2C2"</item>
         <item>#008080"</item>
         <item>#367588"</item>
         <item>#006D5B"</item>
         <item>#E2725B"</item>
-        <item>#D8BFD8"</item>
         <item>#DE6FA1"</item>
-        <item>#FC89AC"</item>
-        <item>#81D8D0"</item>
         <item>#E08D3C"</item>
         <item>#C88141"</item>
-        <item>#DBD7D2"</item>
         <item>#FF6347"</item>
         <item>#746CC0"</item>
         <item>#7DFDFE"</item>
@@ -1100,7 +961,6 @@
         <item>#C25A7C"</item>
         <item>#DEAA88"</item>
         <item>#B57281"</item>
-        <item>#00FFEF"</item>
         <item>#A0D6B4"</item>
         <item>#66424D"</item>
         <item>#8A496B"</item>
@@ -1109,9 +969,6 @@
         <item>#D9004C"</item>
         <item>#8878C3"</item>
         <item>#536895"</item>
-        <item>#FFB300"</item>
-        <item>#3CD070"</item>
-        <item>#FF6FFF"</item>
         <item>#120A8F"</item>
         <item>#4166F5"</item>
         <item>#635147"</item>
@@ -1120,7 +977,6 @@
         <item>#014421"</item>
         <item>#7B1113"</item>
         <item>#AE2029"</item>
-        <item>#E1AD21"</item>
         <item>#D3003F"</item>
         <item>#E55451"</item>
         <item>#C5B358"</item>
@@ -1139,20 +995,14 @@
         <item>#DA1D81"</item>
         <item>#FFA089"</item>
         <item>#9F00FF"</item>
-        <item>#EBF4FA"</item>
         <item>#FC6C85"</item>
-        <item>#F5F5F5"</item>
         <item>#A2ADD0"</item>
         <item>#FF43A4"</item>
         <item>#FC6C85"</item>
         <item>#722F37"</item>
-        <item>#C6AEC7"</item>
-        <item>#C9A0DC"</item>
         <item>#966F33"</item>
         <item>#738678"</item>
         <item>#0F4D92"</item>
-        <item>#52D017"</item>
-        <item>#FFAE42"</item>
         <item>#0014A8"</item>
         <item>#2C1608"</item>
         <item>#54C571"</item>
