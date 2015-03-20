@@ -16,17 +16,17 @@
         tools:layout="@layout/share_layout"/>
 
     <ImageView
-        android:id="@+id/answer_loading"
+        android:id="@+id/answer_loading_ImageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/request_answer"
-        android:layout_alignRight="@id/request_answer"
-        android:layout_above="@id/request_answer"
+        android:layout_alignLeft="@id/request_answer_ImageButton"
+        android:layout_alignRight="@id/request_answer_ImageButton"
+        android:layout_above="@id/request_answer_ImageButton"
         android:paddingRight="10dp"
         android:src="@drawable/logo_two"/>
 
     <ImageButton
-        android:id="@+id/request_answer"
+        android:id="@+id/request_answer_ImageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
@@ -34,10 +34,10 @@
         android:src="@drawable/logo_one"/>
 
     <TextView
-        android:id="@+id/answer_text"
+        android:id="@+id/text_answer_TextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/request_answer"
+        android:layout_above="@id/request_answer_ImageButton"
         android:layout_alignParentTop="true"
         android:layout_margin="@dimen/base_margin"
         android:gravity="center"
