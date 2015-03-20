@@ -15,6 +15,16 @@
         android:layout_alignParentBottom="true"
         tools:layout="@layout/share_layout"/>
 
+    <ImageView
+        android:id="@+id/answer_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/request_answer"
+        android:layout_alignRight="@id/request_answer"
+        android:layout_above="@id/request_answer"
+        android:paddingRight="10dp"
+        android:src="@drawable/logo_two"/>
+
     <ImageButton
         android:id="@+id/request_answer"
         android:layout_width="wrap_content"
