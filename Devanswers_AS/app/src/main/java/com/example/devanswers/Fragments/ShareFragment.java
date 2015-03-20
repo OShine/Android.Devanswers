@@ -13,7 +13,7 @@ public class ShareFragment extends Fragment
 {
     public ShareFragment()
     {
-        
+
     }
 
     @Override
