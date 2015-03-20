@@ -10,6 +10,8 @@ import android.widget.TextView;
 import com.example.devanswers.Fragments.CopyrightFragment;
 import com.example.devanswers.Fragments.ShareFragment;
 import com.example.devanswers.HttpManager.HttpManager;
+import com.example.devanswers.HttpManager.ICompleteHandler;
+import com.example.devanswers.HttpManager.IFailureHandler;
 import com.example.devanswers.InternetManager.InternetManager;
 import com.example.devanswers.R;
 
@@ -49,9 +51,9 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         _copyrightFragment = (CopyrightFragment) getSupportFragmentManager().findFragmentById(R.id.copyright_fragment);
 
         getSupportFragmentManager().beginTransaction()
-                                   .hide(_shareFragment)
-                                   .hide(_copyrightFragment)
-                                   .commit();
+                .hide(_shareFragment)
+                .hide(_copyrightFragment)
+                .commit();
     }
 
     @Override
@@ -62,7 +64,25 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
             case R.id.request_answer_ImageButton:
                 if (_internetManager.IsConnected() == true)
                 {
-                    _httpManager.DownloadWebPage();
+                    _httpManager.DownloadWebPage("http://devanswers.ru/a/7b",
+                            new ICompleteHandler()
+                            {
+                                @Override
+                                public void OnComplete(Object data)
+                                {
+                                    String webPageContent = String.valueOf(data);
+
+                                    _textAnswer.setText(webPageContent);
+                                }
+                            },
+                            new IFailureHandler()
+                            {
+                                @Override
+                                public void OnFailure()
+                                {
+
+                                }
+                            });
                 }
                 break;
         }

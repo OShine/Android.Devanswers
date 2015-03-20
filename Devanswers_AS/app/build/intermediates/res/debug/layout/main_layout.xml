@@ -53,4 +53,4 @@
         android:layout_alignParentBottom="true"
         tools:layout="@layout/copyright_fragment"/>
 
-</RelativeLayout>
+</RelativeLayout><!-- From: file:/D:/GitHub/Android.Devanswers/Devanswers_AS/app/src/main/res/layout/main_layout.xml -->

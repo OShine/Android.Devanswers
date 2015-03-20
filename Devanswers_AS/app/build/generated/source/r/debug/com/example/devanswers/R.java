@@ -18,8 +18,10 @@ public final class R {
     public static final class attr {
     }
     public static final class dimen {
-        public static final int activity_horizontal_margin=0x7f060000;
-        public static final int activity_vertical_margin=0x7f060001;
+        public static final int activity_horizontal_margin=0x7f060003;
+        public static final int answer_text_size=0x7f060000;
+        public static final int base_margin=0x7f060001;
+        public static final int copyright_text_size=0x7f060002;
     }
     public static final class drawable {
         public static final int ic_launcher=0x7f020000;
@@ -28,17 +30,18 @@ public final class R {
         public static final int logo_two=0x7f020003;
     }
     public static final class id {
-        public static final int DevMainImage=0x7f0a0004;
-        public static final int DevMainImage2=0x7f0a0002;
-        public static final int Linkid=0x7f0a0005;
-        public static final int NodeText=0x7f0a0003;
-        public static final int RelativeLayout=0x7f0a0000;
-        public static final int i_about=0x7f0a0006;
-        public static final int i_share=0x7f0a0007;
-        public static final int logotext=0x7f0a0001;
+        public static final int answer_loading_ImageView=0x7f0a0002;
+        public static final int copyright_fragment=0x7f0a0004;
+        public static final int i_about=0x7f0a0005;
+        public static final int i_share=0x7f0a0006;
+        public static final int request_answer_ImageButton=0x7f0a0001;
+        public static final int share_fragment=0x7f0a0000;
+        public static final int text_answer_TextView=0x7f0a0003;
     }
     public static final class layout {
-        public static final int main=0x7f030000;
+        public static final int copyright_fragment=0x7f030000;
+        public static final int main_layout=0x7f030001;
+        public static final int share_layout=0x7f030002;
     }
     public static final class menu {
         public static final int main=0x7f090000;
