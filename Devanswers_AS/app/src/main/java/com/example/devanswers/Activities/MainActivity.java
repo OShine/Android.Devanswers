@@ -62,7 +62,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
             case R.id.request_answer_ImageButton:
                 if (_internetManager.IsConnected() == true)
                 {
-                    //answer request
+                    _httpManager.DownloadWebPage();
                 }
                 break;
         }
