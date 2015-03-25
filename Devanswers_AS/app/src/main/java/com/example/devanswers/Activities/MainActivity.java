@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.devanswers.Fragments.CopyrightFragment;
 import com.example.devanswers.Fragments.ShareFragment;
@@ -13,6 +14,7 @@ import com.example.devanswers.HttpManager.HttpManager;
 import com.example.devanswers.HttpManager.ICompleteHandler;
 import com.example.devanswers.HttpManager.IFailureHandler;
 import com.example.devanswers.InternetManager.InternetManager;
+import com.example.devanswers.PostfixGenerator;
 import com.example.devanswers.R;
 
 public class MainActivity extends FragmentActivity implements View.OnClickListener
@@ -29,6 +31,8 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     private ImageView _answerLoading;
 
     private TextView _textAnswer;
+
+    private String _url;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -64,27 +68,36 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
             case R.id.request_answer_ImageButton:
                 if (_internetManager.IsConnected() == true)
                 {
-                    _httpManager.DownloadWebPage("http://devanswers.ru/a/7b",
-                            new ICompleteHandler()
-                            {
-                                @Override
-                                public void OnComplete(Object data)
-                                {
-                                    String webPageContent = String.valueOf(data);
-
-                                    _textAnswer.setText(webPageContent);
-                                }
-                            },
-                            new IFailureHandler()
-                            {
-                                @Override
-                                public void OnFailure()
-                                {
-
-                                }
-                            });
+                    DownloadPage();
                 }
                 break;
         }
+    }
+
+    public void DownloadPage() {
+
+        _url = "http://devanswers.ru/a/" + PostfixGenerator.Generete();
+        _httpManager.DownloadWebPage(_url,
+                new ICompleteHandler()
+                {
+                    @Override
+                    public void OnComplete(Object data)
+                    {
+                        String webPageContent = String.valueOf(data);
+
+                        _textAnswer.setText(webPageContent);
+
+                        Toast.makeText(getApplicationContext(), _url, Toast.LENGTH_SHORT).show();
+                    }
+                },
+                new IFailureHandler()
+                {
+                    @Override
+                    public void OnFailure()
+                    {
+                        DownloadPage();
+                        Toast.makeText(getApplicationContext(), "Что-то пошло не так...", Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 }
