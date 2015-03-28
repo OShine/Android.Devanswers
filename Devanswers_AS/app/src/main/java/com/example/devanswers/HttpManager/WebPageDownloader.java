@@ -60,6 +60,7 @@ public class WebPageDownloader extends AsyncTask<String, Void, Void>
             {
                 URL url = new URL(urlAddress);
 
+                HttpURLConnection.setFollowRedirects(true);
                 HttpURLConnection httpConnection = (HttpURLConnection) url.openConnection();
                 httpConnection.setReadTimeout(10000);
                 httpConnection.setConnectTimeout(15000);
@@ -76,7 +77,7 @@ public class WebPageDownloader extends AsyncTask<String, Void, Void>
 
                     while ((responseLine = responseReader.readLine()) != null)
                     {
-                        response.append(responseLine + "\n");
+                        response.append(responseLine);
                     }
 
                     responseReader.close();

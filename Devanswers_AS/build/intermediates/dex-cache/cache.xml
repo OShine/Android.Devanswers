@@ -2,18 +2,18 @@
 <items version="2" >
 
     <item
-        jar="C:\Program Files\SDK\extras\android\m2repository\com\android\support\support-annotations\21.0.3\support-annotations-21.0.3.jar"
+        jar="D:\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\21.0.3\support-annotations-21.0.3.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
-        <dex dex="D:\GitHub\Android.Devanswers\Devanswers_AS\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.3-9cfe744aaacfccc58d4a12b7a48b2f432a421ec3.jar" />
+        <dex dex="D:\GitHub\Android.Devanswers\Devanswers_AS\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.3-aa16b3cf885393ef74ba8407c65bcf20627dd05b.jar" />
     </item>
     <item
-        jar="D:\GitHub\Android.Devanswers\Devanswers_AS\app\libs\jsoup-1.8.1.jar"
+        jar="D:\GitHub\Android.Devanswers\Devanswers_AS\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\libs\internal_impl-21.0.3.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="3d57e95c0f150b885ccdbda7a12bef353fd31d02">
-        <dex dex="D:\GitHub\Android.Devanswers\Devanswers_AS\app\build\intermediates\pre-dexed\debug\jsoup-1.8.1-4a4be42a6fb5df62d908fdbfb8482b2cc026518b.jar" />
+        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
+        <dex dex="D:\GitHub\Android.Devanswers\Devanswers_AS\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-ed71f8affdc7b179c0f2bb9c77819de928bf7e39.jar" />
     </item>
     <item
         jar="D:\GitHub\Android.Devanswers\Devanswers_AS\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\classes.jar"
@@ -23,11 +23,11 @@
         <dex dex="D:\GitHub\Android.Devanswers\Devanswers_AS\app\build\intermediates\pre-dexed\debug\classes-add2eb53786f43f0687ca14f5b76edf5fd26e40a.jar" />
     </item>
     <item
-        jar="D:\GitHub\Android.Devanswers\Devanswers_AS\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\libs\internal_impl-21.0.3.jar"
+        jar="D:\GitHub\Android.Devanswers\Devanswers_AS\app\libs\jsoup-1.8.1.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
-        <dex dex="D:\GitHub\Android.Devanswers\Devanswers_AS\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-ed71f8affdc7b179c0f2bb9c77819de928bf7e39.jar" />
+        sha1="3d57e95c0f150b885ccdbda7a12bef353fd31d02">
+        <dex dex="D:\GitHub\Android.Devanswers\Devanswers_AS\app\build\intermediates\pre-dexed\debug\jsoup-1.8.1-4a4be42a6fb5df62d908fdbfb8482b2cc026518b.jar" />
     </item>
 
 </items>
