@@ -14,8 +14,12 @@ import com.example.devanswers.HttpManager.HttpManager;
 import com.example.devanswers.HttpManager.ICompleteHandler;
 import com.example.devanswers.HttpManager.IFailureHandler;
 import com.example.devanswers.InternetManager.InternetManager;
-import com.example.devanswers.PostfixGenerator;
 import com.example.devanswers.R;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.lang.String;
 
 public class MainActivity extends FragmentActivity implements View.OnClickListener
 {
@@ -76,7 +80,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
     public void DownloadPage() {
 
-        _url = "http://devanswers.ru/a/" + PostfixGenerator.Generete();
+        _url = "http://devanswers.ru/";
         _httpManager.DownloadWebPage(_url,
                 new ICompleteHandler()
                 {
@@ -85,9 +89,8 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                     {
                         String webPageContent = String.valueOf(data);
 
-                        _textAnswer.setText(webPageContent);
+                        _textAnswer.setText(GetDevAnswerText(webPageContent));
 
-                        Toast.makeText(getApplicationContext(), _url, Toast.LENGTH_SHORT).show();
                     }
                 },
                 new IFailureHandler()
@@ -96,8 +99,28 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                     public void OnFailure()
                     {
                         DownloadPage();
-                        Toast.makeText(getApplicationContext(), "Что-то пошло не так...", Toast.LENGTH_SHORT).show();
+
                     }
                 });
     }
+
+    private String GetDevAnswerText(String text) {
+
+        String openingTag = "initial = ";
+        String closingTag = "},";
+        int openingTagIndex = text.indexOf(openingTag);
+        int closingTagIndex = text.indexOf(closingTag);
+        String subString = text.substring(openingTagIndex + openingTag.length(), closingTagIndex + 1);
+        String devAnswer = "";
+
+        try {
+            JSONObject jsonObject = new JSONObject(subString);
+            devAnswer = jsonObject.getString("text");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return devAnswer;
+
+    }
 }
+
