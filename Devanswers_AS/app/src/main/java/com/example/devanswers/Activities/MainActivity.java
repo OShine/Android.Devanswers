@@ -2,6 +2,7 @@ package com.example.devanswers.Activities;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.text.Html;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -112,14 +113,15 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         int closingTagIndex = text.indexOf(closingTag);
         String subString = text.substring(openingTagIndex + openingTag.length(), closingTagIndex + 1);
         String devAnswer = "";
-
+        String finalDevAnswer = "";
         try {
             JSONObject jsonObject = new JSONObject(subString);
             devAnswer = jsonObject.getString("text");
+            finalDevAnswer = Html.fromHtml(devAnswer).toString();
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        return devAnswer;
+        return finalDevAnswer;
 
     }
 }
