@@ -1,13 +1,14 @@
 package com.example.devanswers.Activities;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.text.Html;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.devanswers.Fragments.CopyrightFragment;
 import com.example.devanswers.Fragments.ShareFragment;
@@ -21,6 +22,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.lang.String;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
 
 public class MainActivity extends FragmentActivity implements View.OnClickListener
 {
@@ -74,6 +79,12 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                 if (_internetManager.IsConnected() == true)
                 {
                     DownloadPage();
+                    try {
+                        Thread.sleep(300);                 //1000 milliseconds is one second.
+                        } catch(InterruptedException ex) {
+                            Thread.currentThread().interrupt();
+                    }
+                    ChangeBackground();
                 }
                 break;
         }
@@ -122,6 +133,21 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
             e.printStackTrace();
         }
         return finalDevAnswer;
+
+    }
+
+    private void ChangeBackground() {
+
+        RelativeLayout background = (RelativeLayout) findViewById(R.id.main_layout);
+        List<String> backgroundColors;
+        backgroundColors = new ArrayList<String>(Arrays.asList(getResources()
+                .getStringArray(R.array.colors_list)));
+        Random randomBackgroundColor = new Random();
+        int generatedRandomColor = randomBackgroundColor.nextInt(543);
+        background.setBackgroundColor(Color.parseColor(backgroundColors
+                .get(generatedRandomColor)));
+        generatedRandomColor++;
+        backgroundColors.clear();
 
     }
 }

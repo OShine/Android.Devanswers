@@ -13,7 +13,6 @@ public final class R {
     }
     public static final class array {
         public static final int colors_list=0x7f050000;
-        public static final int links_list=0x7f050001;
     }
     public static final class attr {
     }
@@ -30,13 +29,14 @@ public final class R {
         public static final int logo_two=0x7f020003;
     }
     public static final class id {
-        public static final int answer_loading_ImageView=0x7f0a0002;
-        public static final int copyright_fragment=0x7f0a0004;
-        public static final int i_about=0x7f0a0005;
-        public static final int i_share=0x7f0a0006;
-        public static final int request_answer_ImageButton=0x7f0a0001;
-        public static final int share_fragment=0x7f0a0000;
-        public static final int text_answer_TextView=0x7f0a0003;
+        public static final int answer_loading_ImageView=0x7f0a0003;
+        public static final int copyright_fragment=0x7f0a0005;
+        public static final int i_about=0x7f0a0006;
+        public static final int i_share=0x7f0a0007;
+        public static final int main_layout=0x7f0a0000;
+        public static final int request_answer_ImageButton=0x7f0a0002;
+        public static final int share_fragment=0x7f0a0001;
+        public static final int text_answer_TextView=0x7f0a0004;
     }
     public static final class layout {
         public static final int copyright_fragment=0x7f030000;
