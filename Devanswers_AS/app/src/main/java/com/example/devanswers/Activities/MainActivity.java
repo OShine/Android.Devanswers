@@ -1,6 +1,8 @@
 package com.example.devanswers.Activities;
 
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.text.Html;
@@ -21,10 +23,6 @@ import com.example.devanswers.R;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Random;
 
 public class MainActivity extends FragmentActivity implements View.OnClickListener
@@ -44,11 +42,15 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
     private String _url;
 
+    private RelativeLayout _background;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_layout);
+
+         _background = (RelativeLayout) findViewById(R.id.main_layout);
 
         _internetManager = new InternetManager(getApplicationContext());
 
@@ -60,6 +62,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         _answerLoading = (ImageView) findViewById(R.id.answer_loading_ImageView);
 
         _textAnswer = (TextView) findViewById(R.id.text_answer_TextView);
+
 
         _shareFragment = (ShareFragment) getSupportFragmentManager().findFragmentById(R.id.share_fragment);
         _copyrightFragment = (CopyrightFragment) getSupportFragmentManager().findFragmentById(R.id.copyright_fragment);
@@ -138,13 +141,37 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
     private void ChangeBackground() {
 
-        RelativeLayout background = (RelativeLayout) findViewById(R.id.main_layout);
         Random rnd = new Random();
         int red = rnd.nextInt(175);
         int green = rnd.nextInt(175);
         int blue = rnd.nextInt(175);
         int color = Color.argb(255, red, green, blue);
-        background.setBackgroundColor(color);
+        _background.setBackgroundColor(color);
+
+    }
+
+    protected void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+
+        CharSequence savedText = _textAnswer.getText();
+        savedInstanceState.putCharSequence("savedText", savedText);
+
+        int color = Color.TRANSPARENT;
+        Drawable background = _background.getBackground();
+        if (background instanceof ColorDrawable)
+            color = ((ColorDrawable) background).getColor();
+        savedInstanceState.putInt("savedColor", color);
+
+    }
+
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        CharSequence savedRestoreText = savedInstanceState.getCharSequence("savedText");
+        _textAnswer.setText(savedRestoreText);
+
+        int savedColor = savedInstanceState.getInt("savedColor");
+        _background.setBackgroundColor(savedColor);
 
     }
 }
