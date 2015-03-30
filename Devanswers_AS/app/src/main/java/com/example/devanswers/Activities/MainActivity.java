@@ -80,7 +80,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                 {
                     DownloadPage();
                     try {
-                        Thread.sleep(300);                 //1000 milliseconds is one second.
+                        Thread.sleep(400);                 //1000 milliseconds is one second.
                         } catch(InterruptedException ex) {
                             Thread.currentThread().interrupt();
                     }
@@ -139,15 +139,17 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     private void ChangeBackground() {
 
         RelativeLayout background = (RelativeLayout) findViewById(R.id.main_layout);
-        List<String> backgroundColors;
-        backgroundColors = new ArrayList<String>(Arrays.asList(getResources()
-                .getStringArray(R.array.colors_list)));
-        Random randomBackgroundColor = new Random();
-        int generatedRandomColor = randomBackgroundColor.nextInt(543);
-        background.setBackgroundColor(Color.parseColor(backgroundColors
-                .get(generatedRandomColor)));
-        generatedRandomColor++;
-        backgroundColors.clear();
+        Random rnd = new Random();
+        int red = rnd.nextInt(256);
+        int green = rnd.nextInt(256);
+        int blue = rnd.nextInt(256);
+        if ( (red > 200 && green > 200) || (blue > 200 && green > 200) || (red > 200 && blue > 200)) {
+                red = rnd.nextInt(100);
+                blue = rnd.nextInt(100);
+                green = rnd.nextInt(100);
+            }
+        int color = Color.argb(255, red, green, blue);
+        background.setBackgroundColor(color);
 
     }
 }
