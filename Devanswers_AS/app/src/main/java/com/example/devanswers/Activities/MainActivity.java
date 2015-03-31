@@ -63,13 +63,11 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
         _textAnswer = (TextView) findViewById(R.id.text_answer_TextView);
 
-
         _shareFragment = (ShareFragment) getSupportFragmentManager().findFragmentById(R.id.share_fragment);
         _copyrightFragment = (CopyrightFragment) getSupportFragmentManager().findFragmentById(R.id.copyright_fragment);
 
         getSupportFragmentManager().beginTransaction()
                 .hide(_shareFragment)
-                .hide(_copyrightFragment)
                 .commit();
     }
 
@@ -82,12 +80,6 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                 if (_internetManager.IsConnected() == true)
                 {
                     DownloadPage();
-                    try {
-                        Thread.sleep(400);                 //1000 milliseconds is one second.
-                        } catch(InterruptedException ex) {
-                            Thread.currentThread().interrupt();
-                    }
-                    ChangeBackground();
                 }
                 break;
         }
@@ -105,7 +97,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                         String webPageContent = String.valueOf(data);
 
                         _textAnswer.setText(GetDevAnswerText(webPageContent));
-
+                        ChangeBackground();
                     }
                 },
                 new IFailureHandler()
