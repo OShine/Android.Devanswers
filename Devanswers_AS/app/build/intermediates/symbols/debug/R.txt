@@ -3,10 +3,11 @@ int dimen activity_horizontal_margin 0x7f050003
 int dimen answer_text_size 0x7f050000
 int dimen base_margin 0x7f050001
 int dimen copyright_text_size 0x7f050002
-int drawable ic_launcher 0x7f020000
-int drawable logo 0x7f020001
-int drawable logo_one 0x7f020002
-int drawable logo_two 0x7f020003
+int drawable copyright_logo 0x7f020000
+int drawable ic_launcher 0x7f020001
+int drawable logo 0x7f020002
+int drawable logo_one 0x7f020003
+int drawable logo_two 0x7f020004
 int id answer_loading_ImageView 0x7f090005
 int id copyright_fragment 0x7f090007
 int id i_about 0x7f090008
