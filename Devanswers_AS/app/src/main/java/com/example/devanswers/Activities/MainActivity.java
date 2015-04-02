@@ -1,6 +1,9 @@
 package com.example.devanswers.Activities;
 
+import android.animation.ValueAnimator;
+import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -13,7 +16,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.devanswers.Fragments.CopyrightFragment;
-import com.example.devanswers.Fragments.ShareFragment;
 import com.example.devanswers.HttpManager.HttpManager;
 import com.example.devanswers.HttpManager.ICompleteHandler;
 import com.example.devanswers.HttpManager.IFailureHandler;
@@ -28,19 +30,21 @@ import java.util.Random;
 public class MainActivity extends FragmentActivity implements View.OnClickListener
 {
     private InternetManager _internetManager;
-
     private HttpManager _httpManager;
 
-    private ShareFragment _shareFragment;
     private CopyrightFragment _copyrightFragment;
 
     private ImageButton _requestAnswer;
+    private ImageButton _shareButton;
 
     private ImageView _answerLoading;
-
     private TextView _textAnswer;
 
+    private int _offsetShareButton;
+
     private String _url;
+    private String _suffix;
+    private String _devAnswer;
 
     private RelativeLayout _background;
 
@@ -53,22 +57,30 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
          _background = (RelativeLayout) findViewById(R.id.main_layout);
 
         _internetManager = new InternetManager(getApplicationContext());
-
         _httpManager = new HttpManager();
 
         _requestAnswer = (ImageButton) findViewById(R.id.request_answer_ImageButton);
         _requestAnswer.setOnClickListener(this);
 
+        _shareButton = (ImageButton) findViewById(R.id.share_button_ImageButton);
+        _shareButton.setOnClickListener(this);
+
+
         _answerLoading = (ImageView) findViewById(R.id.answer_loading_ImageView);
 
         _textAnswer = (TextView) findViewById(R.id.text_answer_TextView);
+        Typeface custom_font = Typeface.createFromAsset(getAssets(),"fonts/OpenSans-CondBold.ttf");
+        _textAnswer.setTypeface(custom_font);
 
-        _shareFragment = (ShareFragment) getSupportFragmentManager().findFragmentById(R.id.share_fragment);
         _copyrightFragment = (CopyrightFragment) getSupportFragmentManager().findFragmentById(R.id.copyright_fragment);
 
         getSupportFragmentManager().beginTransaction()
-                .hide(_shareFragment)
                 .commit();
+
+        _shareButton.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+        _offsetShareButton = (int)(_shareButton.getMeasuredWidth() * 0.9);
+        deactivateShare();
+
     }
 
     @Override
@@ -77,11 +89,19 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         switch (v.getId())
         {
             case R.id.request_answer_ImageButton:
-                if (_internetManager.IsConnected() == true)
-                {
-                    DownloadPage();
-                }
+            if (_internetManager.IsConnected() == true)
+            {
+                DownloadPage();
+            }
+            break;
+
+            case R.id.share_button_ImageButton: {
+
+                shareIt();
+
+            }
                 break;
+
         }
     }
 
@@ -95,9 +115,12 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                     public void OnComplete(Object data)
                     {
                         String webPageContent = String.valueOf(data);
-
-                        _textAnswer.setText(GetDevAnswerText(webPageContent));
+                        parseWebPage(webPageContent);
+                        _textAnswer.setText(_devAnswer.toUpperCase());
                         ChangeBackground();
+                        if (_shareButton.isClickable() != true)
+                            activateShare();
+
                     }
                 },
                 new IFailureHandler()
@@ -111,23 +134,20 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                 });
     }
 
-    private String GetDevAnswerText(String text) {
+    private void parseWebPage(String text) {
 
         String openingTag = "initial = ";
         String closingTag = "},";
         int openingTagIndex = text.indexOf(openingTag);
         int closingTagIndex = text.indexOf(closingTag);
         String subString = text.substring(openingTagIndex + openingTag.length(), closingTagIndex + 1);
-        String devAnswer = "";
-        String finalDevAnswer = "";
         try {
             JSONObject jsonObject = new JSONObject(subString);
-            devAnswer = jsonObject.getString("text");
-            finalDevAnswer = Html.fromHtml(devAnswer).toString();
+            _suffix = jsonObject.getString("link");
+            _devAnswer = Html.fromHtml(jsonObject.getString("text")).toString();
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        return finalDevAnswer;
 
     }
 
@@ -166,5 +186,40 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         _background.setBackgroundColor(savedColor);
 
     }
+
+    private void shareIt() {
+
+        Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+        sharingIntent.setType("text/plain");
+        sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "DevAnswers");
+        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, "Девелопер ответил:\n" +
+                            _devAnswer  + ".\n" + "Оригинальная цитата доступна здесь: " + _url + "a/" +_suffix);
+        startActivity(Intent.createChooser(sharingIntent, "Поделиться с помощью..."));
+
+    }
+
+    private void activateShare() {
+
+        ValueAnimator valueAnimator = ValueAnimator.ofInt(_offsetShareButton, 0);
+        valueAnimator.setDuration(200);
+        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            public void onAnimationUpdate(ValueAnimator animation) {
+                Integer value = (Integer) animation.getAnimatedValue();
+                _shareButton.setTranslationX(value);
+            }
+        });
+        valueAnimator.start();
+        _shareButton.setClickable(true);
+
+    }
+
+    private void deactivateShare() {
+
+        _shareButton.setTranslationX(_offsetShareButton);
+        _shareButton.setClickable(false);
+
+    }
+
+
 }
 
