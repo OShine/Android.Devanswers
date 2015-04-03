@@ -8,14 +8,6 @@
     android:background="#AAA">
 
     <ImageButton
-        android:id="@+id/request_answer_ImageButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:background="@android:color/transparent"
-        android:src="@drawable/logo_one"/>
-
-    <ImageButton
         android:id="@+id/share_button_ImageButton"
         android:layout_width="72dp"
         android:layout_height="72dp"
@@ -26,16 +18,26 @@
         android:src="@drawable/icon_share"
         android:scaleType="centerInside"/>
 
+    <ImageButton
+        android:id="@+id/request_answer_ImageButton"
+        android:layout_width="144dp"
+        android:layout_height="144dp"
+        android:layout_centerInParent="true"
+        android:paddingLeft="10dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/image_pint"
+        android:scaleType="centerInside"/>
 
     <ImageView
         android:id="@+id/answer_loading_ImageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="30dp"
+        android:layout_height="25dp"
         android:layout_alignLeft="@id/request_answer_ImageButton"
         android:layout_alignRight="@id/request_answer_ImageButton"
         android:layout_above="@id/request_answer_ImageButton"
+        android:layout_marginBottom="-10dp"
         android:paddingRight="10dp"
-        android:src="@drawable/logo_two"/>
+        android:src="@drawable/image_steam"/>
 
     <TextView
         android:id="@+id/text_answer_TextView"
