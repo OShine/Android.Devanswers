@@ -21,4 +21,5 @@ android {
 dependencies {
     compile files('libs/jsoup-1.8.1.jar')
     compile "com.android.support:support-v4:21.0.+"
+    compile 'io.realm:realm-android:0.80.0'
 }
