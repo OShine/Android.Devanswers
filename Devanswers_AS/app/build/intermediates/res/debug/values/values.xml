@@ -7,14 +7,10 @@
     <dimen name="copyright_text_size">10sp</dimen>
     <!-- From: file:/D:/GitHub/Android.Devanswers/Devanswers_AS/app/src/main/res/values/strings.xml -->
     <eat-comment/>
-    <string name="about_menu">О программе</string>
     <string name="app_name">Devanswers</string>
-    <string name="connection">Отсутствует доступ к сети</string>
-    <string name="decsription">Описание</string>
-    <string name="main_title">Оригинальная идея developerexcuses.com</string>
-    <string name="main_url">http://devanswers.ru/a/</string>
-    <string name="share">Поделиться</string>
-    <string name="update_menu">Обновить совет</string>
+    <string name="base_url">http://devanswers.ru/a/</string>
+    <string name="copyright_text">"Оригинальная идея developerexcuses.com"</string>
+    <string name="logo_text">Девелопер\nответит</string>
     <!-- From: file:/D:/GitHub/Android.Devanswers/Devanswers_AS/app/src/main/res/values/styles.xml -->
     <eat-comment/>
     <style name="AppBaseTheme" parent="@android:style/Theme"/>

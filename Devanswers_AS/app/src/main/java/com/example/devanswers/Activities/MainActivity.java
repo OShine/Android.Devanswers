@@ -37,8 +37,10 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     private ImageButton requestAnswer;
     private ImageButton shareButton;
 
-    private ImageView answerLoading;
+    private ImageView steamImage;
     private TextView textAnswer;
+    private TextView logo;
+
 
     private int offsetShareButton;
 
@@ -65,12 +67,16 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         shareButton = (ImageButton) findViewById(R.id.share_button_ImageButton);
         shareButton.setOnClickListener(this);
 
+        steamImage = (ImageView) findViewById(R.id.answer_loading_ImageView);
 
-        answerLoading = (ImageView) findViewById(R.id.answer_loading_ImageView);
+        logo = (TextView) findViewById(R.id.logo_TextView);
+        logo.setText(getResources().getString(R.string.logo_text));
+        Typeface font = Typeface.createFromAsset(getAssets(),"fonts/Lobster-Regular.ttf");
+        logo.setTypeface(font);
 
         textAnswer = (TextView) findViewById(R.id.text_answer_TextView);
-        Typeface custom_font = Typeface.createFromAsset(getAssets(),"fonts/OpenSans-CondBold.ttf");
-        textAnswer.setTypeface(custom_font);
+        font = Typeface.createFromAsset(getAssets(),"fonts/OpenSans-CondBold.ttf");
+        textAnswer.setTypeface(font);
 
         copyrightFragment = (CopyrightFragment) getSupportFragmentManager().findFragmentById(R.id.copyright_fragment);
 

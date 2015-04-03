@@ -28,6 +28,17 @@
         android:src="@drawable/image_pint"
         android:scaleType="centerInside"/>
 
+    <TextView
+        android:id="@+id/logo_TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/request_answer_ImageButton"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        android:text=""/>
+
     <ImageView
         android:id="@+id/answer_loading_ImageView"
         android:layout_width="30dp"

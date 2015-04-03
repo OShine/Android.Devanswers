@@ -1,6 +1,7 @@
 package com.example.devanswers.Fragments;
 
 import android.animation.ValueAnimator;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -35,8 +36,12 @@ public class CopyrightFragment extends Fragment implements View.OnClickListener 
         View view = inflater.inflate(R.layout.copyright_fragment, container, false);
         showCopyright = (ImageButton) view.findViewById(R.id.show_copyright_ImageButton);
         showCopyright.setOnClickListener(this);
+        
         copyrightText = (TextView) view.findViewById(R.id.copyright_text_TextView);
-        copyrightText.setText(("Оригинальная идея developerexcuses.com").toUpperCase());
+        copyrightText.setText((getResources().getString(R.string.copyright_text)).toUpperCase());
+        Typeface custom_font = Typeface.createFromAsset(getActivity().getAssets(),"fonts/OpenSans-CondLight.ttf");
+        copyrightText.setTypeface(custom_font);
+
         root = (RelativeLayout) view.findViewById(R.id.rootCopy_RelativeLayout);
         return view;
     }
