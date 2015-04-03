@@ -52,7 +52,7 @@ public final class R {
         public static final int connection=0x7f060002;
         public static final int decsription=0x7f060003;
         public static final int main_title=0x7f060004;
-        public static final int main_url=0x7f060005;
+        public static final int base_url =0x7f060005;
         public static final int share=0x7f060006;
         public static final int update_menu=0x7f060007;
     }

@@ -8,21 +8,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.example.devanswers.R;
 
 public class CopyrightFragment extends Fragment implements View.OnClickListener {
-    private ImageButton _showCopyright;
+    private ImageButton showCopyright;
 
-    private RelativeLayout _rootCopy;
+    private RelativeLayout root;
 
-    //private int _rootHeight;
-    //private int _buttonHeight;
-    private int _offsetCopy;
+    private TextView copyrightText;
 
-    public CopyrightFragment() {
+    private int fragmentOffset;
 
-
+    public CopyrightFragment()
+    {
     }
 
     @Override
@@ -33,9 +33,11 @@ public class CopyrightFragment extends Fragment implements View.OnClickListener 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.copyright_fragment, container, false);
-        _showCopyright = (ImageButton) view.findViewById(R.id.show_copyright_ImageButton);
-        _showCopyright.setOnClickListener(this);
-        _rootCopy = (RelativeLayout) view.findViewById(R.id.rootCopy_RelativeLayout);
+        showCopyright = (ImageButton) view.findViewById(R.id.show_copyright_ImageButton);
+        showCopyright.setOnClickListener(this);
+        copyrightText = (TextView) view.findViewById(R.id.copyright_text_TextView);
+        copyrightText.setText(("Оригинальная идея developerexcuses.com").toUpperCase());
+        root = (RelativeLayout) view.findViewById(R.id.rootCopy_RelativeLayout);
         return view;
     }
 
@@ -43,14 +45,14 @@ public class CopyrightFragment extends Fragment implements View.OnClickListener 
     public void onResume() {
         super.onResume();
 
-        _showCopyright.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
-        int showCopyrightHeight = _showCopyright.getMeasuredHeight();
+        showCopyright.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+        int showCopyrightHeight = showCopyright.getMeasuredHeight();
 
-        _rootCopy.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
-        int rootHeight = _rootCopy.getMeasuredHeight();
+        root.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+        int rootHeight = root.getMeasuredHeight();
 
-        _offsetCopy = rootHeight - showCopyrightHeight;
-        _rootCopy.setTranslationY(_offsetCopy);
+        fragmentOffset = rootHeight - showCopyrightHeight;
+        root.setTranslationY(fragmentOffset);
 
     }
 
@@ -58,10 +60,10 @@ public class CopyrightFragment extends Fragment implements View.OnClickListener 
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.show_copyright_ImageButton:
-                if (_rootCopy.getTranslationY() == 0)
-                    animate(0, _offsetCopy);
+                if (root.getTranslationY() == 0)
+                    animate(0, fragmentOffset);
                 else
-                    animate(_offsetCopy, 0);
+                    animate(fragmentOffset, 0);
                 break;
         }
     }
@@ -73,7 +75,7 @@ public class CopyrightFragment extends Fragment implements View.OnClickListener 
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             public void onAnimationUpdate(ValueAnimator animation) {
                 Integer value = (Integer) animation.getAnimatedValue();
-                _rootCopy.setTranslationY(value);
+                root.setTranslationY(value);
             }
         });
         valueAnimator.start();

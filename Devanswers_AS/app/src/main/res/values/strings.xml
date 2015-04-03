@@ -2,12 +2,7 @@
 <resources>
 
     <string name="app_name">Devanswers</string>
-    <string name="main_title">Оригинальная идея developerexcuses.com</string>
-    <string name="decsription">Описание</string>
-    <string name="about_menu">О программе</string>
-    <string name="update_menu">Обновить совет</string>
-    <string name="connection">Отсутствует доступ к сети</string>
-    <string name="share">Поделиться</string>
-    <string name="main_url">http://devanswers.ru/a/</string>
+    <string name="base_url">http://devanswers.ru/a/</string>
+    <string name="copyright_text">"Оригинальная идея developerexcuses.com"</string>
     
 </resources>
