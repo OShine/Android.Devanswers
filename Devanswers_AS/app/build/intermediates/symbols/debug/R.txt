@@ -9,12 +9,12 @@ int drawable icon_money 0x7f020002
 int drawable icon_share 0x7f020003
 int drawable image_pint 0x7f020004
 int drawable image_steam 0x7f020005
-int id answer_loading_ImageView 0x7f080007
+int id answer_loading_ImageView 0x7f080006
 int id copyright_fragment 0x7f080009
 int id copyright_text_TextView 0x7f080002
-int id logo_TextView 0x7f080006
+int id logo_TextView 0x7f080007
 int id main_layout 0x7f080003
-int id request_answer_ImageButton 0x7f080005
+int id request_answer_LinearLayout 0x7f080005
 int id rootCopy_RelativeLayout 0x7f080000
 int id share_button_ImageButton 0x7f080004
 int id show_copyright_ImageButton 0x7f080001

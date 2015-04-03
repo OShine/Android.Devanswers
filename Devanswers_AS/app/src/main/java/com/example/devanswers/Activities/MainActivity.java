@@ -12,6 +12,7 @@ import android.text.Html;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -34,7 +35,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
     private CopyrightFragment copyrightFragment;
 
-    private ImageButton requestAnswer;
+    private LinearLayout requestAnswer;
     private ImageButton shareButton;
 
     private ImageView steamImage;
@@ -56,12 +57,12 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_layout);
 
-         background = (RelativeLayout) findViewById(R.id.main_layout);
+        background = (RelativeLayout) findViewById(R.id.main_layout);
 
         internetManager = new InternetManager(getApplicationContext());
         httpManager = new HttpManager();
 
-        requestAnswer = (ImageButton) findViewById(R.id.request_answer_ImageButton);
+        requestAnswer = (LinearLayout) findViewById(R.id.request_answer_LinearLayout);
         requestAnswer.setOnClickListener(this);
 
         shareButton = (ImageButton) findViewById(R.id.share_button_ImageButton);
@@ -71,11 +72,11 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
         logo = (TextView) findViewById(R.id.logo_TextView);
         logo.setText(getResources().getString(R.string.logo_text));
-        Typeface font = Typeface.createFromAsset(getAssets(),"fonts/Lobster-Regular.ttf");
+        Typeface font = Typeface.createFromAsset(getAssets(), "fonts/Lobster-Regular.ttf");
         logo.setTypeface(font);
 
         textAnswer = (TextView) findViewById(R.id.text_answer_TextView);
-        font = Typeface.createFromAsset(getAssets(),"fonts/OpenSans-CondBold.ttf");
+        font = Typeface.createFromAsset(getAssets(), "fonts/OpenSans-CondBold.ttf");
         textAnswer.setTypeface(font);
 
         copyrightFragment = (CopyrightFragment) getSupportFragmentManager().findFragmentById(R.id.copyright_fragment);
@@ -84,7 +85,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                 .commit();
 
         shareButton.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
-        offsetShareButton = (int)(shareButton.getMeasuredWidth() * 0.9);
+        offsetShareButton = (int) (shareButton.getLayoutParams().height* 0.9);
         deactivateShare();
 
     }
@@ -94,24 +95,22 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     {
         switch (v.getId())
         {
-            case R.id.request_answer_ImageButton:
-            if (internetManager.IsConnected() == true)
-            {
-                downloadPage();
-            }
-            break;
+            case R.id.request_answer_LinearLayout:
+                if (internetManager.IsConnected() == true)
+                {
+                    downloadPage();
+                }
+                break;
 
-            case R.id.share_button_ImageButton: {
-
+            case R.id.share_button_ImageButton:
                 shareIt();
-
-            }
                 break;
 
         }
     }
 
-    public void downloadPage() {
+    public void downloadPage()
+    {
 
         url = "http://devanswers.ru/";
         httpManager.DownloadWebPage(url,
@@ -140,24 +139,28 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                 });
     }
 
-    private void parseWebPage(String text) {
+    private void parseWebPage(String text)
+    {
 
         String openingTag = "initial = ";
         String closingTag = "},";
         int openingTagIndex = text.indexOf(openingTag);
         int closingTagIndex = text.indexOf(closingTag);
         String subString = text.substring(openingTagIndex + openingTag.length(), closingTagIndex + 1);
-        try {
+        try
+        {
             JSONObject jsonObject = new JSONObject(subString);
             suffix = jsonObject.getString("link");
             devAnswer = Html.fromHtml(jsonObject.getString("text")).toString();
-        } catch (JSONException e) {
+        } catch (JSONException e)
+        {
             e.printStackTrace();
         }
 
     }
 
-    private void changeBackground() {
+    private void changeBackground()
+    {
 
         Random rnd = new Random();
         int red = rnd.nextInt(175);
@@ -168,7 +171,8 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
     }
 
-    protected void onSaveInstanceState(Bundle savedInstanceState) {
+    protected void onSaveInstanceState(Bundle savedInstanceState)
+    {
         super.onSaveInstanceState(savedInstanceState);
 
         CharSequence savedText = textAnswer.getText();
@@ -182,7 +186,8 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
     }
 
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+    protected void onRestoreInstanceState(Bundle savedInstanceState)
+    {
         super.onRestoreInstanceState(savedInstanceState);
 
         CharSequence savedRestoreText = savedInstanceState.getCharSequence("savedText");
@@ -193,7 +198,8 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
     }
 
-    private void shareIt() {
+    private void shareIt()
+    {
 
         Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
         sharingIntent.setType("text/plain");
@@ -204,12 +210,15 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
     }
 
-    private void activateShare() {
+    private void activateShare()
+    {
 
         ValueAnimator valueAnimator = ValueAnimator.ofInt(offsetShareButton, 0);
         valueAnimator.setDuration(200);
-        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            public void onAnimationUpdate(ValueAnimator animation) {
+        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener()
+        {
+            public void onAnimationUpdate(ValueAnimator animation)
+            {
                 Integer value = (Integer) animation.getAnimatedValue();
                 shareButton.setTranslationX(value);
             }
@@ -219,8 +228,8 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
     }
 
-    private void deactivateShare() {
-
+    private void deactivateShare()
+    {
         shareButton.setTranslationX(offsetShareButton);
         shareButton.setClickable(false);
     }

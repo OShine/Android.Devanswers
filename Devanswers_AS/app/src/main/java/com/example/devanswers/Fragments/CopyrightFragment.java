@@ -34,15 +34,25 @@ public class CopyrightFragment extends Fragment implements View.OnClickListener 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.copyright_fragment, container, false);
+
         showCopyright = (ImageButton) view.findViewById(R.id.show_copyright_ImageButton);
         showCopyright.setOnClickListener(this);
         
         copyrightText = (TextView) view.findViewById(R.id.copyright_text_TextView);
         copyrightText.setText((getResources().getString(R.string.copyright_text)).toUpperCase());
-        Typeface custom_font = Typeface.createFromAsset(getActivity().getAssets(),"fonts/OpenSans-CondLight.ttf");
-        copyrightText.setTypeface(custom_font);
+        Typeface font = Typeface.createFromAsset(getActivity().getAssets(),"fonts/OpenSans-CondLight.ttf");
+        copyrightText.setTypeface(font);
 
         root = (RelativeLayout) view.findViewById(R.id.rootCopy_RelativeLayout);
+
+//        showCopyright.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+        int showCopyrightHeight = showCopyright.getLayoutParams().height;
+
+        root.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+        int rootHeight = root.getMeasuredHeight();
+
+        fragmentOffset = rootHeight - showCopyrightHeight;
+
         return view;
     }
 
@@ -50,13 +60,6 @@ public class CopyrightFragment extends Fragment implements View.OnClickListener 
     public void onResume() {
         super.onResume();
 
-        showCopyright.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
-        int showCopyrightHeight = showCopyright.getMeasuredHeight();
-
-        root.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
-        int rootHeight = root.getMeasuredHeight();
-
-        fragmentOffset = rootHeight - showCopyrightHeight;
         root.setTranslationY(fragmentOffset);
 
     }

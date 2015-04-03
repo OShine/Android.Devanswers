@@ -9,53 +9,59 @@
 
     <ImageButton
         android:id="@+id/share_button_ImageButton"
-        android:layout_width="72dp"
-        android:layout_height="72dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
+        android:paddingTop="-5dp"
         android:layout_marginTop="10dp"
         android:background="@android:color/transparent"
         android:src="@drawable/icon_share"
         android:scaleType="centerInside"/>
 
-    <ImageButton
-        android:id="@+id/request_answer_ImageButton"
-        android:layout_width="144dp"
-        android:layout_height="144dp"
-        android:layout_centerInParent="true"
-        android:paddingLeft="10dp"
-        android:background="@android:color/transparent"
-        android:src="@drawable/image_pint"
-        android:scaleType="centerInside"/>
-
-    <TextView
-        android:id="@+id/logo_TextView"
+    <LinearLayout
+        android:id="@+id/request_answer_LinearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/request_answer_ImageButton"
-        android:gravity="center"
-        android:textColor="@android:color/white"
-        android:textSize="24sp"
-        android:text=""/>
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:gravity="center">
 
-    <ImageView
-        android:id="@+id/answer_loading_ImageView"
-        android:layout_width="30dp"
-        android:layout_height="25dp"
-        android:layout_alignLeft="@id/request_answer_ImageButton"
-        android:layout_alignRight="@id/request_answer_ImageButton"
-        android:layout_above="@id/request_answer_ImageButton"
-        android:layout_marginBottom="-10dp"
-        android:paddingRight="10dp"
-        android:src="@drawable/image_steam"/>
+        <ImageView
+            android:id="@+id/answer_loading_ImageView"
+            android:layout_width="30dp"
+            android:layout_height="25dp"
+            android:layout_marginRight="dp"
+            android:layout_marginBottom="-5dp"
+            android:src="@drawable/image_steam"/>
+
+        <ImageView
+            android:layout_width="125dp"
+            android:layout_height="125dp"
+
+            android:layout_marginLeft="10dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/image_pint"
+            android:scaleType="centerInside"/>
+
+        <TextView
+            android:id="@+id/logo_TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="-5dp"
+            android:lineSpacingMultiplier="0.8"
+            android:textColor="@android:color/white"
+            android:textSize="24sp"
+            android:text="Девелопер\nответит"/>
+        </LinearLayout>
 
     <TextView
         android:id="@+id/text_answer_TextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/answer_loading_ImageView"
         android:layout_alignParentTop="true"
+        android:layout_above="@id/request_answer_LinearLayout"
         android:layout_margin="@dimen/base_margin"
         android:gravity="center"
         android:textColor="@android:color/white"

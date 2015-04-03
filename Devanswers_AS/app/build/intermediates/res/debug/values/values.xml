@@ -2,9 +2,9 @@
 <resources>
     <!-- From: file:/D:/GitHub/Android.Devanswers/Devanswers_AS/app/src/main/res/values/dimens.xml -->
     <eat-comment/>
-    <dimen name="answer_text_size">15sp</dimen>
+    <dimen name="answer_text_size">18sp</dimen>
     <dimen name="base_margin">15dp</dimen>
-    <dimen name="copyright_text_size">10sp</dimen>
+    <dimen name="copyright_text_size">12sp</dimen>
     <!-- From: file:/D:/GitHub/Android.Devanswers/Devanswers_AS/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="app_name">Devanswers</string>
