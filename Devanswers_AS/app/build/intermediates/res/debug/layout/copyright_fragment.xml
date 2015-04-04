@@ -3,7 +3,7 @@
     android:id="@+id/root_RelativeLayout"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <ImageButton
         android:id="@+id/show_copyright_ImageButton"
@@ -11,27 +11,20 @@
         android:layout_height="50dp"
         android:paddingLeft="-2dp"
         android:background="@null"
-        android:src="@drawable/icon_copyright"
-        android:layout_marginLeft="10dp"
-        android:scaleType="centerInside"/>
+        android:scaleType="centerInside"
+        android:src="@drawable/icon_copyright"/>
 
-    <RelativeLayout
+    <TextView
+        android:id="@+id/copyright_text_TextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
+        android:layout_alignParentLeft="true"
         android:layout_below="@id/show_copyright_ImageButton"
         android:background="#2acc72"
-        android:padding="10dp">
-
-        <TextView
-            android:id="@+id/copyright_text_TextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:layout_alignParentLeft="true"
-            android:textColor="@android:color/white"
-            android:text="@string/copyright_text"
-            android:textSize="16sp"/>
-    </RelativeLayout>
+        android:gravity="center_horizontal"
+        android:padding="10dp"
+        android:text="@string/copyright_text"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"/>
 
 </RelativeLayout><!-- From: file:/D:/GitHub/Android.Devanswers/Devanswers_AS/app/src/main/res/layout/copyright_fragment.xml -->

@@ -19,6 +19,17 @@
         android:src="@drawable/icon_share"
         android:scaleType="centerInside"/>
 
+    <ImageButton
+        android:id="@+id/blurb_button_ImageButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:paddingTop="-5dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/icon_blurb"
+        android:scaleType="centerInside"/>
+
     <LinearLayout
         android:id="@+id/request_answer_LinearLayout"
         android:layout_width="wrap_content"
@@ -62,7 +73,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_above="@id/request_answer_LinearLayout"
-        android:layout_margin="@dimen/base_margin"
+        android:layout_marginLeft="@dimen/base_margin"
+        android:layout_marginRight="@dimen/base_margin"
+        android:layout_marginTop="@dimen/base_margin"
+        android:layout_marginBottom="5dp"
         android:gravity="center"
         android:textAllCaps="true"
         android:textColor="@android:color/white"
@@ -73,8 +87,9 @@
         android:name="com.example.devanswers.Fragments.CopyrightFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
+
         android:layout_alignParentBottom="true"
+        android:layout_marginLeft="10dp"
         tools:layout="@layout/copyright_fragment"/>
 
 </RelativeLayout>

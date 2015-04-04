@@ -21,23 +21,24 @@ public final class R {
     }
     public static final class drawable {
         public static final int ic_launcher=0x7f020000;
-        public static final int icon_copyright=0x7f020001;
-        public static final int icon_money=0x7f020002;
+        public static final int icon_blurb=0x7f020001;
+        public static final int icon_copyright=0x7f020002;
         public static final int icon_share=0x7f020003;
         public static final int image_pint=0x7f020004;
         public static final int image_steam=0x7f020005;
     }
     public static final class id {
-        public static final int answer_loading_ImageView=0x7f080006;
-        public static final int copyright_fragment=0x7f080009;
+        public static final int answer_loading_ImageView=0x7f080007;
+        public static final int blurb_button_ImageButton=0x7f080005;
+        public static final int copyright_fragment=0x7f08000a;
         public static final int copyright_text_TextView=0x7f080002;
-        public static final int logo_TextView=0x7f080007;
+        public static final int logo_TextView=0x7f080008;
         public static final int main_layout=0x7f080003;
-        public static final int request_answer_LinearLayout=0x7f080005;
+        public static final int request_answer_LinearLayout=0x7f080006;
         public static final int root_RelativeLayout=0x7f080000;
         public static final int share_button_ImageButton=0x7f080004;
         public static final int show_copyright_ImageButton=0x7f080001;
-        public static final int text_answer_TextView=0x7f080008;
+        public static final int text_answer_TextView=0x7f080009;
     }
     public static final class layout {
         public static final int copyright_fragment=0x7f030000;
