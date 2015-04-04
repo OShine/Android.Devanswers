@@ -17,7 +17,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.devanswers.ColorHelper;
-import com.example.devanswers.DataBase.DataBaseHelper;
+import com.example.devanswers.DataBase.DataBase;
+import com.example.devanswers.DataBase.DeveloperAnswerModel;
 import com.example.devanswers.Fragments.CopyrightFragment;
 import com.example.devanswers.HttpManager.HttpManager;
 import com.example.devanswers.HttpManager.ICompleteHandler;
@@ -27,8 +28,6 @@ import com.example.devanswers.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.Random;
 
 public class MainActivity extends FragmentActivity implements View.OnClickListener
 {
@@ -47,12 +46,13 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     private int offsetShareButton;
 
     private String url;
-    private String suffix;
-    private String devAnswer;
 
     private RelativeLayout background;
 
-    private DataBaseHelper dataBaseHelper;
+    private DataBase dataBaseHelper;
+
+    private String suffix;
+    private String text;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -60,11 +60,10 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_layout);
 
-        dataBaseHelper = new DataBaseHelper(this);
-
-        background = (RelativeLayout) findViewById(R.id.main_layout);
+        dataBaseHelper = new DataBase(this);
 
         internetManager = new InternetManager(getApplicationContext());
+
         httpManager = new HttpManager();
 
         requestAnswer = (LinearLayout) findViewById(R.id.request_answer_LinearLayout);
@@ -75,6 +74,8 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
         steamImage = (ImageView) findViewById(R.id.answer_loading_ImageView);
 
+        background = (RelativeLayout) findViewById(R.id.main_layout);
+
         logo = (TextView) findViewById(R.id.logo_TextView);
         logo.setText(getResources().getString(R.string.logo_text));
         Typeface font = Typeface.createFromAsset(getAssets(), "fonts/Lobster-Regular.ttf");
@@ -83,7 +84,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         textAnswer = (TextView) findViewById(R.id.text_answer_TextView);
         font = Typeface.createFromAsset(getAssets(), "fonts/OpenSans-CondBold.ttf");
         textAnswer.setTypeface(font);
-
+        
         copyrightFragment = (CopyrightFragment) getSupportFragmentManager().findFragmentById(R.id.copyright_fragment);
 
         getSupportFragmentManager().beginTransaction()
@@ -92,7 +93,6 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         shareButton.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
         offsetShareButton = (int) (shareButton.getLayoutParams().height* 0.9);
         deactivateShare();
-
     }
 
     @Override
@@ -107,20 +107,22 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                 }
                 else
                 {
-                    textAnswer.setText(dataBaseHelper.getRandomDeveloperAnswer());
+                    text = dataBaseHelper.getRandomDeveloperAnswer();
+
+                    showDeveloperAnswer();
+
+                    changeBackground();
                 }
                 break;
 
             case R.id.share_button_ImageButton:
                 shareIt();
                 break;
-
         }
     }
 
     public void downloadPage()
     {
-
         url = "http://devanswers.ru/";
         httpManager.DownloadWebPage(url,
                 new ICompleteHandler()
@@ -128,14 +130,13 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                     @Override
                     public void OnComplete(Object data)
                     {
-                        String webPageContent = String.valueOf(data);
-                        parseWebPage(webPageContent);
-                        dataBaseHelper.saveDeveloperAnswer(suffix, devAnswer);
-                        textAnswer.setText(devAnswer.toUpperCase());
-                        changeBackground();
-                        if (shareButton.isClickable() != true)
-                            activateShare();
+                        parseWebPage(String.valueOf(data));
 
+                        saveDeveloperAnswer();
+
+                        showDeveloperAnswer();
+
+                        changeBackground();
                     }
                 },
                 new IFailureHandler()
@@ -144,30 +145,44 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                     public void OnFailure()
                     {
                         downloadPage();
-
                     }
                 });
     }
 
-    private void parseWebPage(String text)
+    private void parseWebPage(String webPageData)
     {
-
         String openingTag = "initial = ";
         String closingTag = "},";
-        int openingTagIndex = text.indexOf(openingTag);
-        int closingTagIndex = text.indexOf(closingTag);
-        String subString = text.substring(openingTagIndex + openingTag.length(), closingTagIndex + 1);
+
+        int openingTagIndex = webPageData.indexOf(openingTag);
+        int closingTagIndex = webPageData.indexOf(closingTag);
+
+        String subString = webPageData.substring(openingTagIndex + openingTag.length(), closingTagIndex + 1);
         try
         {
             JSONObject jsonObject = new JSONObject(subString);
             suffix = jsonObject.getString("link");
-            devAnswer = Html.fromHtml(jsonObject.getString("text")).toString();
-        } catch (JSONException e)
+            text = Html.fromHtml(jsonObject.getString("text")).toString();
+        }
+        catch (JSONException e)
         {
             e.printStackTrace();
         }
-
     }
+
+    private void saveDeveloperAnswer()
+    {
+        dataBaseHelper.saveDeveloperAnswer(suffix, text);
+    }
+
+    private void showDeveloperAnswer()
+    {
+        textAnswer.setText(text);
+
+        if (shareButton.isClickable() != true)
+            activateShare();
+    }
+
 
     private void changeBackground()
     {
@@ -203,19 +218,16 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
     private void shareIt()
     {
-
         Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
         sharingIntent.setType("text/plain");
         sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "DevAnswers");
-        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, "Девелопер ответил:\n" +
-                devAnswer + ".\n" + "Оригинальная цитата доступна здесь: " + url + "a/" + suffix);
-        startActivity(Intent.createChooser(sharingIntent, "Поделиться с помощью..."));
+        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, "Девелопер ответил:\n" + text + ".\n" + "Оригинальная цитата доступна здесь: " + url + "a/" + suffix);
 
+        startActivity(Intent.createChooser(sharingIntent, "Поделиться с помощью..."));
     }
 
     private void activateShare()
     {
-
         ValueAnimator valueAnimator = ValueAnimator.ofInt(offsetShareButton, 0);
         valueAnimator.setDuration(200);
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener()
@@ -228,7 +240,6 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         });
         valueAnimator.start();
         shareButton.setClickable(true);
-
     }
 
     private void deactivateShare()

@@ -15,7 +15,7 @@ int id copyright_text_TextView 0x7f080002
 int id logo_TextView 0x7f080007
 int id main_layout 0x7f080003
 int id request_answer_LinearLayout 0x7f080005
-int id rootCopy_RelativeLayout 0x7f080000
+int id root_RelativeLayout 0x7f080000
 int id share_button_ImageButton 0x7f080004
 int id show_copyright_ImageButton 0x7f080001
 int id text_answer_TextView 0x7f080008

@@ -10,7 +10,7 @@ import io.realm.RealmQuery;
 import io.realm.RealmResults;
 import io.realm.internal.Table;
 
-public class DataBaseHelper
+public class DataBase
 {
     private Context context;
 
@@ -18,7 +18,7 @@ public class DataBaseHelper
 
     private Random random;
 
-    public DataBaseHelper(Context context)
+    public DataBase(Context context)
     {
         this.context = context;
 

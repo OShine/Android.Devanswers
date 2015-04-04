@@ -43,7 +43,7 @@ public class CopyrightFragment extends Fragment implements View.OnClickListener 
         Typeface font = Typeface.createFromAsset(getActivity().getAssets(),"fonts/OpenSans-CondLight.ttf");
         copyrightText.setTypeface(font);
 
-        root = (RelativeLayout) view.findViewById(R.id.rootCopy_RelativeLayout);
+        root = (RelativeLayout) view.findViewById(R.id.root_RelativeLayout);
 
 //        showCopyright.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
         int showCopyrightHeight = showCopyright.getLayoutParams().height;

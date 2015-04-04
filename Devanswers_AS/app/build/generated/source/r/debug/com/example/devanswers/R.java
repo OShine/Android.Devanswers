@@ -34,7 +34,7 @@ public final class R {
         public static final int logo_TextView=0x7f080007;
         public static final int main_layout=0x7f080003;
         public static final int request_answer_LinearLayout=0x7f080005;
-        public static final int rootCopy_RelativeLayout=0x7f080000;
+        public static final int root_RelativeLayout=0x7f080000;
         public static final int share_button_ImageButton=0x7f080004;
         public static final int show_copyright_ImageButton=0x7f080001;
         public static final int text_answer_TextView=0x7f080008;
