@@ -247,9 +247,5 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         shareButton.setTranslationX(offsetShareButton);
         shareButton.setClickable(false);
     }
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/Android-Studio
 }
 
