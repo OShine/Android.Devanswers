@@ -16,6 +16,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.devanswers.ColorHelper;
+import com.example.devanswers.DataBase.DataBaseHelper;
 import com.example.devanswers.Fragments.CopyrightFragment;
 import com.example.devanswers.HttpManager.HttpManager;
 import com.example.devanswers.HttpManager.ICompleteHandler;
@@ -42,7 +44,6 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     private TextView textAnswer;
     private TextView logo;
 
-
     private int offsetShareButton;
 
     private String url;
@@ -51,11 +52,15 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
     private RelativeLayout background;
 
+    private DataBaseHelper dataBaseHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_layout);
+
+        dataBaseHelper = new DataBaseHelper(this);
 
         background = (RelativeLayout) findViewById(R.id.main_layout);
 
@@ -100,6 +105,10 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                 {
                     downloadPage();
                 }
+                else
+                {
+                    textAnswer.setText(dataBaseHelper.getRandomDeveloperAnswer());
+                }
                 break;
 
             case R.id.share_button_ImageButton:
@@ -121,6 +130,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                     {
                         String webPageContent = String.valueOf(data);
                         parseWebPage(webPageContent);
+                        dataBaseHelper.saveDeveloperAnswer(suffix, devAnswer);
                         textAnswer.setText(devAnswer.toUpperCase());
                         changeBackground();
                         if (shareButton.isClickable() != true)
@@ -161,14 +171,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
     private void changeBackground()
     {
-
-        Random rnd = new Random();
-        int red = rnd.nextInt(175);
-        int green = rnd.nextInt(175);
-        int blue = rnd.nextInt(175);
-        int color = Color.argb(255, red, green, blue);
-        background.setBackgroundColor(color);
-
+        background.setBackgroundColor(ColorHelper.GetRandomColor());
     }
 
     protected void onSaveInstanceState(Bundle savedInstanceState)

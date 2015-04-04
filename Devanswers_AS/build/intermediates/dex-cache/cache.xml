@@ -16,6 +16,13 @@
         <dex dex="D:\GitHub\Android.Devanswers\Devanswers_AS\app\build\intermediates\pre-dexed\debug\classes-add2eb53786f43f0687ca14f5b76edf5fd26e40a.jar" />
     </item>
     <item
+        jar="C:\Users\Ilya\.gradle\caches\modules-2\files-2.1\io.realm\realm-android\0.80.0\fb7d6789b8c840759e13888372559b7741a2bae1\realm-android-0.80.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="fb7d6789b8c840759e13888372559b7741a2bae1">
+        <dex dex="D:\GitHub\Android.Devanswers\Devanswers_AS\app\build\intermediates\pre-dexed\debug\realm-android-0.80.0-56f21e1a16ff3421ac2d38645790c5a2a82362c8.jar" />
+    </item>
+    <item
         jar="D:\GitHub\Android.Devanswers\Devanswers_AS\app\libs\jsoup-1.8.1.jar"
         jumboMode="false"
         revision="21.1.2"
