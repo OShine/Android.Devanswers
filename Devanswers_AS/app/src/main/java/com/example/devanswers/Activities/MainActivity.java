@@ -221,8 +221,10 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
         sharingIntent.setType("text/plain");
         sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "DevAnswers");
-        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, "Девелопер ответил:\n" + text + ".\n" + "Оригинальная цитата доступна здесь: " + url + "a/" + suffix);
-
+        if (internetManager.IsConnected() == true)
+            sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, "Девелопер ответил:\n" + text + ".\n" + "Оригинальная цитата доступна здесь: " + url + "a/" + suffix);
+        else
+            sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, "Девелопер ответил:\n" + text + ".\n" + "Смешные и не очень смешные, но очень типичные ответы девелоперов ищите здесь: http://devanswers.ru/");
         startActivity(Intent.createChooser(sharingIntent, "Поделиться с помощью..."));
     }
 
