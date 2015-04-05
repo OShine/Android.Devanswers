@@ -206,7 +206,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         savedInstanceState.putFloat("translationShare", shareButton.getTranslationX());
         savedInstanceState.putBoolean("clickableShare", shareButton.isClickable());
 
-
+        savedInstanceState.putBoolean("opened", copyrightFragment.isOpened());
 
     }
 
@@ -223,7 +223,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         shareButton.setTranslationX(savedInstanceState.getFloat("translationShare"));
         shareButton.setClickable(savedInstanceState.getBoolean("clickableShare"));
 
-
+        copyrightFragment.setOpened(savedInstanceState.getBoolean("opened"));
 
     }
 

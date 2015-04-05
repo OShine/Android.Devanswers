@@ -3,6 +3,7 @@ package com.example.devanswers.Fragments;
 import android.animation.ValueAnimator;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,10 +21,18 @@ public class CopyrightFragment extends Fragment implements View.OnClickListener 
 
     private TextView copyrightText;
     private boolean opened;
+    private int animationDuration = 700;
 
     public boolean isOpened() {
 
         return opened;
+    }
+
+    public void setOpened(boolean state){
+
+      if (opened !=state) {
+          opened = state;
+      }
     }
 
     private int fragmentOffset;
@@ -74,16 +83,19 @@ public class CopyrightFragment extends Fragment implements View.OnClickListener 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.show_copyright_ImageButton:
+            case R.id.show_copyright_ImageButton: {
                 toggle();
-                break;
-        }
+                setDelayForCopyrightButton();
+            }
+        break;
     }
+}
 
     private void animate(int from, int to)
     {
+
         ValueAnimator valueAnimator = ValueAnimator.ofInt(from, to);
-        valueAnimator.setDuration(700);
+        valueAnimator.setDuration(animationDuration);
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             public void onAnimationUpdate(ValueAnimator animation) {
                 Integer value = (Integer) animation.getAnimatedValue();
@@ -91,14 +103,29 @@ public class CopyrightFragment extends Fragment implements View.OnClickListener 
             }
         });
         valueAnimator.start();
+
     }
 
     public void toggle() {
 
         opened = !opened;
-        if (opened == true)
+        if (opened == false)
             animate(0, fragmentOffset);
         else
             animate(fragmentOffset, 0);
+
+    }
+
+    public void setDelayForCopyrightButton(){
+
+        showCopyright.setClickable(false);
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                showCopyright.setClickable(true);
+            }
+        }, animationDuration);
+
     }
 }
