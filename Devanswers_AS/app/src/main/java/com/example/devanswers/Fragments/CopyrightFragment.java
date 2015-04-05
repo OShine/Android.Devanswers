@@ -19,6 +19,12 @@ public class CopyrightFragment extends Fragment implements View.OnClickListener 
     private RelativeLayout root;
 
     private TextView copyrightText;
+    private boolean opened;
+
+    public boolean isOpened() {
+
+        return opened;
+    }
 
     private int fragmentOffset;
 
@@ -29,6 +35,7 @@ public class CopyrightFragment extends Fragment implements View.OnClickListener 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        opened = false;
     }
 
     @Override
@@ -43,7 +50,7 @@ public class CopyrightFragment extends Fragment implements View.OnClickListener 
         Typeface font = Typeface.createFromAsset(getActivity().getAssets(),"fonts/OpenSans-CondLight.ttf");
         copyrightText.setTypeface(font);
 
-        root = (RelativeLayout) view.findViewById(R.id.root_RelativeLayout);
+        root = (RelativeLayout) view.findViewById(R.id.copyright_root_RelativeLayout);
 
 //        showCopyright.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
         int showCopyrightHeight = showCopyright.getLayoutParams().height;
@@ -68,10 +75,7 @@ public class CopyrightFragment extends Fragment implements View.OnClickListener 
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.show_copyright_ImageButton:
-                if (root.getTranslationY() == 0)
-                    animate(0, fragmentOffset);
-                else
-                    animate(fragmentOffset, 0);
+                toggle();
                 break;
         }
     }
@@ -89,4 +93,12 @@ public class CopyrightFragment extends Fragment implements View.OnClickListener 
         valueAnimator.start();
     }
 
+    public void toggle() {
+
+        opened = !opened;
+        if (opened == true)
+            animate(0, fragmentOffset);
+        else
+            animate(fragmentOffset, 0);
+    }
 }

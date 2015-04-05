@@ -206,6 +206,8 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         savedInstanceState.putFloat("translationShare", shareButton.getTranslationX());
         savedInstanceState.putBoolean("clickableShare", shareButton.isClickable());
 
+
+
     }
 
     protected void onRestoreInstanceState(Bundle savedInstanceState)
@@ -220,6 +222,9 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
         shareButton.setTranslationX(savedInstanceState.getFloat("translationShare"));
         shareButton.setClickable(savedInstanceState.getBoolean("clickableShare"));
+
+
+
     }
 
     private void shareIt()
