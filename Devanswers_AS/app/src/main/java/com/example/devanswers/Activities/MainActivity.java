@@ -179,6 +179,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     {
         textAnswer.setText(text);
 
+
         if (shareButton.isClickable() != true)
             activateShare();
     }
@@ -202,6 +203,9 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
             color = ((ColorDrawable) background).getColor();
         savedInstanceState.putInt("savedColor", color);
 
+        savedInstanceState.putFloat("translationShare", shareButton.getTranslationX());
+        savedInstanceState.putBoolean("clickableShare", shareButton.isClickable());
+
     }
 
     protected void onRestoreInstanceState(Bundle savedInstanceState)
@@ -214,6 +218,8 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         int savedColor = savedInstanceState.getInt("savedColor");
         background.setBackgroundColor(savedColor);
 
+        shareButton.setTranslationX(savedInstanceState.getFloat("translationShare"));
+        shareButton.setClickable(savedInstanceState.getBoolean("clickableShare"));
     }
 
     private void shareIt()
