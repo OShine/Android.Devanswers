@@ -208,6 +208,8 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
         savedInstanceState.putBoolean("opened", copyrightFragment.isOpened());
 
+       // savedInstanceState.putFloat("translationCopy", copyrightFragment.getCopyRootTranslation());
+
     }
 
     protected void onRestoreInstanceState(Bundle savedInstanceState)
@@ -224,6 +226,8 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         shareButton.setClickable(savedInstanceState.getBoolean("clickableShare"));
 
         copyrightFragment.setOpened(savedInstanceState.getBoolean("opened"));
+
+       // copyrightFragment.setCopyRootTranslation(savedInstanceState.getFloat("translationCopy"));
 
     }
 

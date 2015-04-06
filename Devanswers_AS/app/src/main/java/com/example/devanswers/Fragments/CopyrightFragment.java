@@ -34,6 +34,20 @@ public class CopyrightFragment extends Fragment implements View.OnClickListener 
           opened = state;
       }
     }
+//
+//    public float getCopyRootTranslation(){
+//
+//        return root.getTranslationY();
+//    }
+//
+//    public void setCopyRootTranslation(float state){
+//
+//        if (state == 0)
+//            root.setTranslationY(0);
+//        if (state != 0)
+//            root.setTranslationY(fragmentOffset);
+//
+//    }
 
     private int fragmentOffset;
 
@@ -109,7 +123,7 @@ public class CopyrightFragment extends Fragment implements View.OnClickListener 
     public void toggle() {
 
         opened = !opened;
-        if (opened == false)
+        if (!opened)
             animate(0, fragmentOffset);
         else
             animate(fragmentOffset, 0);
