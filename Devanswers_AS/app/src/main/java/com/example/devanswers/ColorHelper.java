@@ -1,21 +1,22 @@
 package com.example.devanswers;
 
+import android.content.Context;
 import android.graphics.Color;
 
 import java.util.Random;
 
-public final class ColorHelper
+public class ColorHelper
 {
-    private static final String[] hexColorCodes = {"#1bbc9b", "#5598c5", "#c1f09c", "#9b58b5", "#34495e",
-                                                    "#16a086", "#27ae61", "#2a80b9", "#8f44ad", "#2d3e50",
-                                                    "#0047ab", "#e77e23", "#e84c3d",            "#95a5a5",
-                                                    "#33c0e0", "#5598c5", "#ab5b84", "#cdc9a5", "#d1a381",
-                                                    "#f39c11", "#d55401", "#c1392b", "#bec3c7", "#7e8c8d"};
+    private final int[] hexColorCodes;
+    private final Random random = new Random();
 
-    private final static Random random = new Random();
+    public ColorHelper(Context context){
 
-    public static int GetRandomColor()
+        hexColorCodes = context.getResources().getIntArray(R.array.colors);
+    }
+
+    public int GetRandomColor()
     {
-        return Color.parseColor(hexColorCodes[random.nextInt(hexColorCodes.length)]);
+        return hexColorCodes[random.nextInt(hexColorCodes.length)];
     }
 }

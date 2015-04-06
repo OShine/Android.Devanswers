@@ -1,5 +1,6 @@
 package com.example.devanswers.Fragments;
 
+import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -30,24 +31,12 @@ public class CopyrightFragment extends Fragment implements View.OnClickListener 
 
     public void setOpened(boolean state){
 
-      if (opened !=state) {
-          opened = state;
-      }
+        opened = state;
+        if (opened)
+            root.setTranslationY(0);
+        else
+            root.setTranslationY(fragmentOffset);
     }
-//
-//    public float getCopyRootTranslation(){
-//
-//        return root.getTranslationY();
-//    }
-//
-//    public void setCopyRootTranslation(float state){
-//
-//        if (state == 0)
-//            root.setTranslationY(0);
-//        if (state != 0)
-//            root.setTranslationY(fragmentOffset);
-//
-//    }
 
     private int fragmentOffset;
 
@@ -89,8 +78,8 @@ public class CopyrightFragment extends Fragment implements View.OnClickListener 
     @Override
     public void onResume() {
         super.onResume();
-
-        root.setTranslationY(fragmentOffset);
+        if (!opened)
+            root.setTranslationY(fragmentOffset);
 
     }
 
@@ -99,7 +88,7 @@ public class CopyrightFragment extends Fragment implements View.OnClickListener 
         switch (v.getId()) {
             case R.id.show_copyright_ImageButton: {
                 toggle();
-                setDelayForCopyrightButton();
+
             }
         break;
     }
@@ -109,6 +98,28 @@ public class CopyrightFragment extends Fragment implements View.OnClickListener 
     {
 
         ValueAnimator valueAnimator = ValueAnimator.ofInt(from, to);
+        valueAnimator.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+                showCopyright.setClickable(false);
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                showCopyright.setClickable(true);
+
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
         valueAnimator.setDuration(animationDuration);
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             public void onAnimationUpdate(ValueAnimator animation) {
@@ -130,16 +141,4 @@ public class CopyrightFragment extends Fragment implements View.OnClickListener 
 
     }
 
-    public void setDelayForCopyrightButton(){
-
-        showCopyright.setClickable(false);
-        final Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                showCopyright.setClickable(true);
-            }
-        }, animationDuration);
-
-    }
 }

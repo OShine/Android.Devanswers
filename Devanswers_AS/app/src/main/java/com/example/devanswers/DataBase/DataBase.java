@@ -33,11 +33,11 @@ public class DataBase
         return realm.where(DeveloperAnswerModel.class).equalTo("suffix", "suffix").findFirst().getText();
     }
 
-    public String getRandomDeveloperAnswer()
+    public DeveloperAnswerModel getRandomDeveloperAnswer()
     {
         RealmResults<DeveloperAnswerModel> results = realm.where(DeveloperAnswerModel.class).findAll();
         int index = random.nextInt((int)realm.where(DeveloperAnswerModel.class).count());
-        return results.get(index).getText();
+        return results.get(index);
     }
 
     public boolean isDeveloperAnswerExist(String suffix)
@@ -46,21 +46,24 @@ public class DataBase
         return query.findAll().size() != 0;
     }
 
-    public boolean saveDeveloperAnswer(String suffix, String textAnswer)
+    public boolean saveDeveloperAnswer(DeveloperAnswerModel developerAnswer)
     {
-        if (isDeveloperAnswerExist(suffix) == false)
+        if (isDeveloperAnswerExist(developerAnswer.getSuffix()) == false)
         {
             realm.beginTransaction();
-            DeveloperAnswerModel developerAnswer = realm.createObject(DeveloperAnswerModel.class);
-            developerAnswer.setSuffix(suffix);
-            developerAnswer.setText(textAnswer);
+            realm.copyToRealm(developerAnswer);
             realm.commitTransaction();
-
             return true;
         }
         else
         {
             return false;
         }
+    }
+
+    public int developerAnswerCount(){
+
+        return realm.where(DeveloperAnswerModel.class).findAll().size();
+
     }
 }

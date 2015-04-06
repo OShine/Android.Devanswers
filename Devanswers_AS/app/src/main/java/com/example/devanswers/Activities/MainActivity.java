@@ -1,5 +1,6 @@
 package com.example.devanswers.Activities;
 
+import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.graphics.Color;
@@ -33,7 +34,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 {
     private InternetManager internetManager;
     private HttpManager httpManager;
-
+    private DeveloperAnswerModel developerAnswer;
     private CopyrightFragment copyrightFragment;
 
     private LinearLayout requestAnswer;
@@ -43,16 +44,16 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     private TextView textAnswer;
     private TextView logo;
 
+    private final static String KEY_TEXT = "Text";
+    private final static String KEY_SUFFIX = "Suffix";
+
     private int offsetShareButton;
 
-    private String url;
+    private final static String url = "http://devanswers.ru/";
 
     private RelativeLayout background;
-
     private DataBase dataBaseHelper;
-
-    private String suffix;
-    private String text;
+    private ColorHelper colorHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -61,10 +62,9 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         setContentView(R.layout.main_layout);
 
         dataBaseHelper = new DataBase(this);
-
         internetManager = new InternetManager(getApplicationContext());
-
         httpManager = new HttpManager();
+        colorHelper = new ColorHelper(this);
 
         requestAnswer = (LinearLayout) findViewById(R.id.request_answer_LinearLayout);
         requestAnswer.setOnClickListener(this);
@@ -107,11 +107,14 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                 }
                 else
                 {
-                    text = dataBaseHelper.getRandomDeveloperAnswer();
+                    if (dataBaseHelper.developerAnswerCount() != 0)
+                    {
+                        developerAnswer = dataBaseHelper.getRandomDeveloperAnswer();
 
-                    showDeveloperAnswer();
+                        showDeveloperAnswer();
 
-                    changeBackground();
+                        changeBackground();
+                    }
                 }
                 break;
 
@@ -123,7 +126,6 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
     public void downloadPage()
     {
-        url = "http://devanswers.ru/";
         httpManager.DownloadWebPage(url,
                 new ICompleteHandler()
                 {
@@ -158,11 +160,13 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         int closingTagIndex = webPageData.indexOf(closingTag);
 
         String subString = webPageData.substring(openingTagIndex + openingTag.length(), closingTagIndex + 1);
+        developerAnswer = new DeveloperAnswerModel();
+
         try
         {
             JSONObject jsonObject = new JSONObject(subString);
-            suffix = jsonObject.getString("link");
-            text = Html.fromHtml(jsonObject.getString("text")).toString();
+            developerAnswer.setSuffix(jsonObject.getString("link"));
+            developerAnswer.setText(Html.fromHtml(jsonObject.getString("text")).toString());
         }
         catch (JSONException e)
         {
@@ -172,12 +176,12 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
     private void saveDeveloperAnswer()
     {
-        dataBaseHelper.saveDeveloperAnswer(suffix, text);
+        dataBaseHelper.saveDeveloperAnswer(developerAnswer);
     }
 
     private void showDeveloperAnswer()
     {
-        textAnswer.setText(text);
+        textAnswer.setText(developerAnswer.getText());
 
 
         if (shareButton.isClickable() != true)
@@ -187,15 +191,15 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
     private void changeBackground()
     {
-        background.setBackgroundColor(ColorHelper.GetRandomColor());
+        background.setBackgroundColor(colorHelper.GetRandomColor());
     }
 
     protected void onSaveInstanceState(Bundle savedInstanceState)
     {
         super.onSaveInstanceState(savedInstanceState);
 
-        CharSequence savedText = textAnswer.getText();
-        savedInstanceState.putCharSequence("savedText", savedText);
+        savedInstanceState.putString(KEY_TEXT, developerAnswer.getText());
+        savedInstanceState.putString(KEY_SUFFIX, developerAnswer.getSuffix());
 
         int color = Color.TRANSPARENT;
         Drawable background = this.background.getBackground();
@@ -205,10 +209,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
         savedInstanceState.putFloat("translationShare", shareButton.getTranslationX());
         savedInstanceState.putBoolean("clickableShare", shareButton.isClickable());
-
         savedInstanceState.putBoolean("opened", copyrightFragment.isOpened());
-
-       // savedInstanceState.putFloat("translationCopy", copyrightFragment.getCopyRootTranslation());
 
     }
 
@@ -216,9 +217,10 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     {
         super.onRestoreInstanceState(savedInstanceState);
 
-        CharSequence savedRestoreText = savedInstanceState.getCharSequence("savedText");
-        textAnswer.setText(savedRestoreText);
-
+        developerAnswer = new DeveloperAnswerModel();
+        developerAnswer.setText(savedInstanceState.getString(KEY_TEXT));
+        developerAnswer.setSuffix(savedInstanceState.getString(KEY_SUFFIX));
+        showDeveloperAnswer();
         int savedColor = savedInstanceState.getInt("savedColor");
         background.setBackgroundColor(savedColor);
 
@@ -227,8 +229,6 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
         copyrightFragment.setOpened(savedInstanceState.getBoolean("opened"));
 
-       // copyrightFragment.setCopyRootTranslation(savedInstanceState.getFloat("translationCopy"));
-
     }
 
     private void shareIt()
@@ -236,15 +236,13 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
         sharingIntent.setType("text/plain");
         sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "DevAnswers");
-        if (internetManager.IsConnected() == true)
-            sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, "Девелопер ответил:\n" + text + ".\n" + "Оригинальная цитата доступна здесь: " + url + "a/" + suffix);
-        else
-            sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, "Девелопер ответил:\n" + text + ".\n" + "Смешные и не очень смешные, но очень типичные ответы девелоперов ищите здесь: http://devanswers.ru/");
+        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, "Девелопер ответил:\n" + developerAnswer.getText() + ".\n" + "Оригинальная цитата доступна здесь: " + url + "a/" + developerAnswer.getSuffix());
         startActivity(Intent.createChooser(sharingIntent, "Поделиться с помощью..."));
     }
 
     private void activateShare()
     {
+
         ValueAnimator valueAnimator = ValueAnimator.ofInt(offsetShareButton, 0);
         valueAnimator.setDuration(200);
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener()
