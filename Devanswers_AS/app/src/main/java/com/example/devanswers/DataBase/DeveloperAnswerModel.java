@@ -7,6 +7,16 @@ public class DeveloperAnswerModel extends RealmObject
     private String suffix;
     private String text;
 
+    public DeveloperAnswerModel(String text, String suffix) {
+
+        this.text = text;
+        this.suffix = suffix;
+    }
+
+    public DeveloperAnswerModel() {
+
+    }
+
     public String getSuffix()
     {
         return suffix;

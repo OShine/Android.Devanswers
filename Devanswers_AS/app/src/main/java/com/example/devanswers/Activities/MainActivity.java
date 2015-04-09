@@ -1,6 +1,5 @@
 package com.example.devanswers.Activities;
 
-import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.graphics.Color;
@@ -20,11 +19,13 @@ import android.widget.TextView;
 import com.example.devanswers.ColorHelper;
 import com.example.devanswers.DataBase.DataBase;
 import com.example.devanswers.DataBase.DeveloperAnswerModel;
+import com.example.devanswers.DeveloperAnswerHelper;
 import com.example.devanswers.Fragments.CopyrightFragment;
 import com.example.devanswers.HttpManager.HttpManager;
 import com.example.devanswers.HttpManager.ICompleteHandler;
 import com.example.devanswers.HttpManager.IFailureHandler;
 import com.example.devanswers.InternetManager.InternetManager;
+import com.example.devanswers.ParcelableDeveloperAnswer;
 import com.example.devanswers.R;
 
 import org.json.JSONException;
@@ -44,12 +45,10 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     private TextView textAnswer;
     private TextView logo;
 
-    private final static String KEY_TEXT = "Text";
-    private final static String KEY_SUFFIX = "Suffix";
+    private final static String KEY_DEVELOPER_ANSWER = "Developer";
+    private final static String url = "http://devanswers.ru/";
 
     private int offsetShareButton;
-
-    private final static String url = "http://devanswers.ru/";
 
     private RelativeLayout background;
     private DataBase dataBaseHelper;
@@ -183,7 +182,6 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     {
         textAnswer.setText(developerAnswer.getText());
 
-
         if (shareButton.isClickable() != true)
             activateShare();
     }
@@ -198,8 +196,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     {
         super.onSaveInstanceState(savedInstanceState);
 
-        savedInstanceState.putString(KEY_TEXT, developerAnswer.getText());
-        savedInstanceState.putString(KEY_SUFFIX, developerAnswer.getSuffix());
+        savedInstanceState.putParcelable(KEY_DEVELOPER_ANSWER, DeveloperAnswerHelper.convertToParcelable(developerAnswer));
 
         int color = Color.TRANSPARENT;
         Drawable background = this.background.getBackground();
@@ -217,9 +214,8 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     {
         super.onRestoreInstanceState(savedInstanceState);
 
-        developerAnswer = new DeveloperAnswerModel();
-        developerAnswer.setText(savedInstanceState.getString(KEY_TEXT));
-        developerAnswer.setSuffix(savedInstanceState.getString(KEY_SUFFIX));
+        developerAnswer = DeveloperAnswerHelper.convertFromParcelable((ParcelableDeveloperAnswer) savedInstanceState.getParcelable(KEY_DEVELOPER_ANSWER));
+
         showDeveloperAnswer();
         int savedColor = savedInstanceState.getInt("savedColor");
         background.setBackgroundColor(savedColor);
@@ -262,5 +258,6 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         shareButton.setTranslationX(offsetShareButton);
         shareButton.setClickable(false);
     }
+
 }
 
