@@ -60,6 +60,8 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_layout);
 
+        developerAnswer = new DeveloperAnswerModel();
+
         dataBaseHelper = new DataBase(this);
         internetManager = new InternetManager(getApplicationContext());
         httpManager = new HttpManager();
@@ -159,7 +161,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         int closingTagIndex = webPageData.indexOf(closingTag);
 
         String subString = webPageData.substring(openingTagIndex + openingTag.length(), closingTagIndex + 1);
-        developerAnswer = new DeveloperAnswerModel();
+        //developerAnswer = new DeveloperAnswerModel();
 
         try
         {
@@ -178,14 +180,13 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         dataBaseHelper.saveDeveloperAnswer(developerAnswer);
     }
 
-    private void showDeveloperAnswer()
-    {
+    private void showDeveloperAnswer() {
         textAnswer.setText(developerAnswer.getText());
-
-        if (shareButton.isClickable() != true)
-            activateShare();
+        if (developerAnswer.getText() != null) {
+            if (shareButton.isClickable() != true)
+                activateShare();
+        }
     }
-
 
     private void changeBackground()
     {
