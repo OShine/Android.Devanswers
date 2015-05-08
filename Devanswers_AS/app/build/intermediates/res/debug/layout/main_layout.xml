@@ -27,7 +27,7 @@
         android:layout_centerVertical="true"
         android:paddingTop="-5dp"
         android:background="@android:color/transparent"
-        android:src="@drawable/icon_blurb"
+
         android:scaleType="centerInside"/>
 
     <LinearLayout
@@ -73,13 +73,15 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_above="@id/request_answer_LinearLayout"
-        android:layout_toRightOf="@id/blurb_button_ImageButton"
         android:layout_toLeftOf="@id/share_button_ImageButton"
-        android:layout_margin="@dimen/base_margin"
         android:gravity="center"
         android:textAllCaps="true"
         android:textColor="@android:color/white"
-        android:textSize="@dimen/answer_text_size"/>
+        android:textSize="@dimen/answer_text_size"
+        android:layout_marginRight="@dimen/base_margin"
+        android:layout_marginTop="@dimen/base_margin"
+        android:layout_marginBottom="@dimen/base_margin"
+        android:layout_toRightOf="@+id/blurb_button_ImageButton" />
 
     <fragment
         android:id="@+id/copyright_fragment"
@@ -90,5 +92,16 @@
         android:layout_alignParentBottom="true"
         android:layout_marginLeft="10dp"
         tools:layout="@layout/copyright_fragment"/>
+
+    <fragment
+        android:id="@+id/donate_fragment"
+        android:name="com.example.devanswers.Fragments.DonateFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        tools:layout="@layout/donate_fragment"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true" />
+
 
 </RelativeLayout><!-- From: file:/D:/GitHub/Android.Devanswers/Devanswers_AS/app/src/main/res/layout/main_layout.xml -->

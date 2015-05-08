@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/donate_root_RelativeLayout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageButton
+        android:id="@+id/show_donate_ImageButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:paddingTop="-5dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/icon_blurb"
+        android:scaleType="centerInside"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true" />
+
+    <TextView
+        android:id="@+id/donate_text_TextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#2acc72"
+        android:gravity="center_horizontal"
+        android:padding="10dp"
+        android:text="@string/logo_text"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/show_donate_ImageButton" />
+
+</RelativeLayout><!-- From: file:/D:/GitHub/Android.Devanswers/Devanswers_AS/app/src/main/res/layout-land/donate_fragment.xml -->

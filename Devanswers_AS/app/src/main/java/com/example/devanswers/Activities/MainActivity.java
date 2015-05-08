@@ -21,6 +21,7 @@ import com.example.devanswers.DataBase.DataBase;
 import com.example.devanswers.DataBase.DeveloperAnswerModel;
 import com.example.devanswers.DeveloperAnswerHelper;
 import com.example.devanswers.Fragments.CopyrightFragment;
+import com.example.devanswers.Fragments.DonateFragment;
 import com.example.devanswers.HttpManager.HttpManager;
 import com.example.devanswers.HttpManager.ICompleteHandler;
 import com.example.devanswers.HttpManager.IFailureHandler;
@@ -37,6 +38,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     private HttpManager httpManager;
     private DeveloperAnswerModel developerAnswer;
     private CopyrightFragment copyrightFragment;
+    private DonateFragment donateFragment;
 
     private LinearLayout requestAnswer;
     private ImageButton shareButton;
@@ -87,6 +89,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         textAnswer.setTypeface(font);
         
         copyrightFragment = (CopyrightFragment) getSupportFragmentManager().findFragmentById(R.id.copyright_fragment);
+        donateFragment = (DonateFragment) getSupportFragmentManager().findFragmentById(R.id.donate_fragment);
 
         getSupportFragmentManager().beginTransaction()
                 .commit();
@@ -207,7 +210,8 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
         savedInstanceState.putFloat("translationShare", shareButton.getTranslationX());
         savedInstanceState.putBoolean("clickableShare", shareButton.isClickable());
-        savedInstanceState.putBoolean("opened", copyrightFragment.isOpened());
+        savedInstanceState.putBoolean("copyrightOpened", copyrightFragment.isOpened());
+        savedInstanceState.putBoolean("donateOpened", donateFragment.isOpened());
 
     }
 
@@ -224,7 +228,8 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         shareButton.setTranslationX(savedInstanceState.getFloat("translationShare"));
         shareButton.setClickable(savedInstanceState.getBoolean("clickableShare"));
 
-        copyrightFragment.setOpened(savedInstanceState.getBoolean("opened"));
+        copyrightFragment.setOpened(savedInstanceState.getBoolean("copyrightOpened"));
+        donateFragment.setOpened(savedInstanceState.getBoolean("donateOpened"));
 
     }
 

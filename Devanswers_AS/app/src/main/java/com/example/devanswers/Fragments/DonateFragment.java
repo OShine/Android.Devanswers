@@ -4,7 +4,6 @@ import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,62 +14,63 @@ import android.widget.TextView;
 
 import com.example.devanswers.R;
 
-public class CopyrightFragment extends Fragment implements View.OnClickListener {
-    private ImageButton showCopyright;
+public class DonateFragment extends Fragment implements View.OnClickListener {
+
+    private ImageButton showDonate;
 
     private RelativeLayout root;
 
-    private TextView copyrightText;
-    private boolean copyrightOpened;
+    private TextView donateText;
+    private boolean donateOpened;
     private int animationDuration = 700;
 
     public boolean isOpened() {
 
-        return copyrightOpened;
+        return donateOpened;
     }
 
     public void setOpened(boolean state){
 
-        copyrightOpened = state;
-        if (copyrightOpened)
-            root.setTranslationY(0);
+        donateOpened = state;
+        if (donateOpened)
+            root.setTranslationX(0);
         else
-            root.setTranslationY(copyrightFragmentOffset);
+            root.setTranslationX(donateFragmentOffset);
     }
 
-    private int copyrightFragmentOffset;
+    private int donateFragmentOffset;
 
-    public CopyrightFragment()
+    public DonateFragment()
     {
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        copyrightOpened = false;
+        donateOpened = false;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.copyright_fragment, container, false);
+        View view = inflater.inflate(R.layout.donate_fragment, container, false);
 
-        showCopyright = (ImageButton) view.findViewById(R.id.show_copyright_ImageButton);
-        showCopyright.setOnClickListener(this);
-        
-        copyrightText = (TextView) view.findViewById(R.id.copyright_text_TextView);
-        copyrightText.setText((getResources().getString(R.string.copyright_text)).toUpperCase());
+        showDonate = (ImageButton) view.findViewById(R.id.show_donate_ImageButton);
+        showDonate.setOnClickListener(this);
+
+        donateText = (TextView) view.findViewById(R.id.donate_text_TextView);
+        donateText.setText((getResources().getString(R.string.logo_text)).toUpperCase());
         Typeface font = Typeface.createFromAsset(getActivity().getAssets(),"fonts/OpenSans-CondLight.ttf");
-        copyrightText.setTypeface(font);
+        donateText.setTypeface(font);
 
-        root = (RelativeLayout) view.findViewById(R.id.copyright_root_RelativeLayout);
+        root = (RelativeLayout) view.findViewById(R.id.donate_root_RelativeLayout);
 
 //        showCopyright.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
-        int showCopyrightHeight = showCopyright.getLayoutParams().height;
+        int showDonateHeight = showDonate.getLayoutParams().height;
 
         root.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
         int rootHeight = root.getMeasuredHeight();
 
-        copyrightFragmentOffset = rootHeight - showCopyrightHeight;
+        donateFragmentOffset = - rootHeight + showDonateHeight/2;
 
         return view;
     }
@@ -78,21 +78,20 @@ public class CopyrightFragment extends Fragment implements View.OnClickListener 
     @Override
     public void onResume() {
         super.onResume();
-        if (!copyrightOpened)
-            root.setTranslationY(copyrightFragmentOffset);
+        if (!donateOpened)
+            root.setTranslationX(donateFragmentOffset);
 
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.show_copyright_ImageButton: {
+            case R.id.show_donate_ImageButton: {
                 toggle();
-
             }
-        break;
+            break;
+        }
     }
-}
 
     private void animate(int from, int to)
     {
@@ -101,12 +100,12 @@ public class CopyrightFragment extends Fragment implements View.OnClickListener 
         valueAnimator.addListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animation) {
-                showCopyright.setClickable(false);
+                showDonate.setClickable(false);
             }
 
             @Override
             public void onAnimationEnd(Animator animation) {
-                showCopyright.setClickable(true);
+                showDonate.setClickable(true);
 
             }
 
@@ -124,7 +123,7 @@ public class CopyrightFragment extends Fragment implements View.OnClickListener 
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             public void onAnimationUpdate(ValueAnimator animation) {
                 Integer value = (Integer) animation.getAnimatedValue();
-                root.setTranslationY(value);
+                root.setTranslationX(value);
             }
         });
         valueAnimator.start();
@@ -133,11 +132,11 @@ public class CopyrightFragment extends Fragment implements View.OnClickListener 
 
     public void toggle() {
 
-        copyrightOpened = !copyrightOpened;
-        if (!copyrightOpened)
-            animate(0, copyrightFragmentOffset);
+        donateOpened = !donateOpened;
+        if (!donateOpened)
+            animate(0, donateFragmentOffset);
         else
-            animate(copyrightFragmentOffset, 0);
+           animate(donateFragmentOffset, 0);
 
     }
 
