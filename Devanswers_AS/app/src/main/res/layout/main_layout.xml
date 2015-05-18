@@ -65,7 +65,7 @@
             android:textColor="@android:color/white"
             android:textSize="24sp"
             android:text="Девелопер\nответит"/>
-        </LinearLayout>
+    </LinearLayout>
 
     <TextView
         android:id="@+id/text_answer_TextView"

@@ -136,13 +136,14 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                     @Override
                     public void OnComplete(Object data)
                     {
+                        requestAnswer.setClickable(false);
+
                         parseWebPage(String.valueOf(data));
-
                         saveDeveloperAnswer();
-
                         showDeveloperAnswer();
-
                         changeBackground();
+
+                        requestAnswer.setClickable(true);
                     }
                 },
                 new IFailureHandler()

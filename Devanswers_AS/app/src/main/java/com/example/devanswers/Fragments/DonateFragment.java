@@ -2,6 +2,7 @@ package com.example.devanswers.Fragments;
 
 import android.animation.Animator;
 import android.animation.ValueAnimator;
+import android.content.res.Configuration;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -17,10 +18,9 @@ import com.example.devanswers.R;
 public class DonateFragment extends Fragment implements View.OnClickListener {
 
     private ImageButton showDonate;
-
     private RelativeLayout root;
-
     private TextView donateText;
+
     private boolean donateOpened;
     private int animationDuration = 700;
 
@@ -29,7 +29,7 @@ public class DonateFragment extends Fragment implements View.OnClickListener {
         return donateOpened;
     }
 
-    public void setOpened(boolean state){
+    public void setOpened(boolean state) {
 
         donateOpened = state;
         if (donateOpened)
@@ -39,15 +39,18 @@ public class DonateFragment extends Fragment implements View.OnClickListener {
     }
 
     private int donateFragmentOffset;
+    private int showDonateHeight;
+    private int showRootHeight;
 
-    public DonateFragment()
-    {
+    public DonateFragment() {
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         donateOpened = false;
+        //setRetainInstance(true);
+
     }
 
     @Override
@@ -58,21 +61,42 @@ public class DonateFragment extends Fragment implements View.OnClickListener {
         showDonate.setOnClickListener(this);
 
         donateText = (TextView) view.findViewById(R.id.donate_text_TextView);
-        donateText.setText((getResources().getString(R.string.logo_text)).toUpperCase());
-        Typeface font = Typeface.createFromAsset(getActivity().getAssets(),"fonts/OpenSans-CondLight.ttf");
+        donateText.setText((getResources().getString(R.string.donate_text)).toUpperCase());
+        Typeface font = Typeface.createFromAsset(getActivity().getAssets(), "fonts/OpenSans-CondLight.ttf");
         donateText.setTypeface(font);
 
         root = (RelativeLayout) view.findViewById(R.id.donate_root_RelativeLayout);
 
-//        showCopyright.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
-        int showDonateHeight = showDonate.getLayoutParams().height;
-
+        showDonateHeight = showDonate.getLayoutParams().height;
         root.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
-        int rootHeight = root.getMeasuredHeight();
-
-        donateFragmentOffset = - rootHeight + showDonateHeight/2;
+        showRootHeight = root.getMeasuredHeight();
+        donateFragmentOffset = -showRootHeight/2 + showDonateHeight;
 
         return view;
+    }
+
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+
+            donateFragmentOffset = -showRootHeight + showDonateHeight * 3 + showDonateHeight/2 ;
+
+            if (donateOpened)
+                root.setTranslationX(0);
+            else
+                root.setTranslationX(donateFragmentOffset);
+
+        } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
+
+            donateFragmentOffset = -showRootHeight/2 + showDonateHeight;
+
+            if (donateOpened)
+                root.setTranslationX(0);
+            else
+                root.setTranslationX(donateFragmentOffset);
+
+        }
     }
 
     @Override
@@ -80,7 +104,6 @@ public class DonateFragment extends Fragment implements View.OnClickListener {
         super.onResume();
         if (!donateOpened)
             root.setTranslationX(donateFragmentOffset);
-
     }
 
     @Override
@@ -93,9 +116,7 @@ public class DonateFragment extends Fragment implements View.OnClickListener {
         }
     }
 
-    private void animate(int from, int to)
-    {
-
+    private void animate(int from, int to) {
         ValueAnimator valueAnimator = ValueAnimator.ofInt(from, to);
         valueAnimator.addListener(new Animator.AnimatorListener() {
             @Override
@@ -136,7 +157,7 @@ public class DonateFragment extends Fragment implements View.OnClickListener {
         if (!donateOpened)
             animate(0, donateFragmentOffset);
         else
-           animate(donateFragmentOffset, 0);
+            animate(donateFragmentOffset, 0);
 
     }
 

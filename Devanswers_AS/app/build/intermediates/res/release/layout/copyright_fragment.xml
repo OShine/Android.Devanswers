@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/copyright_root_RelativeLayout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageButton
+        android:id="@+id/show_copyright_ImageButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:paddingLeft="-2dp"
+        android:background="@null"
+        android:scaleType="centerInside"
+        android:src="@drawable/icon_copyright"/>
+
+    <TextView
+        android:id="@+id/copyright_text_TextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/show_copyright_ImageButton"
+        android:background="#2acc72"
+        android:gravity="center_horizontal"
+        android:padding="10dp"
+        android:text="@string/copyright_text"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"/>
+
+</RelativeLayout><!-- From: file:/D:/GitHub/Android.Devanswers/Devanswers_AS/app/src/main/res/layout/copyright_fragment.xml -->
