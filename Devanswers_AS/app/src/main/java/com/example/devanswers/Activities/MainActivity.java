@@ -97,6 +97,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         shareButton.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
         offsetShareButton = (int) (shareButton.getLayoutParams().height* 0.9);
         deactivateShare();
+
     }
 
     @Override

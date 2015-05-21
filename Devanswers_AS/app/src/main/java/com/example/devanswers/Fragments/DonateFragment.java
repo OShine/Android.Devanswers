@@ -6,6 +6,7 @@ import android.content.res.Configuration;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,7 +41,8 @@ public class DonateFragment extends Fragment implements View.OnClickListener {
 
     private int donateFragmentOffset;
     private int showDonateHeight;
-    private int showRootHeight;
+    private int dmHeight;
+    private int dmWidth;
 
     public DonateFragment() {
     }
@@ -67,10 +69,12 @@ public class DonateFragment extends Fragment implements View.OnClickListener {
 
         root = (RelativeLayout) view.findViewById(R.id.donate_root_RelativeLayout);
 
+        DisplayMetrics dm = view.getContext().getResources().getDisplayMetrics();
+        dmHeight = dm.heightPixels;
+        dmWidth = dm.widthPixels;
+
         showDonateHeight = showDonate.getLayoutParams().height;
-        root.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
-        showRootHeight = root.getMeasuredHeight();
-        donateFragmentOffset = -showRootHeight/2 + showDonateHeight;
+        donateFragmentOffset = - dmWidth + showDonateHeight;
 
         return view;
     }
@@ -80,7 +84,7 @@ public class DonateFragment extends Fragment implements View.OnClickListener {
 
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
 
-            donateFragmentOffset = -showRootHeight + showDonateHeight * 3 + showDonateHeight/2 ;
+            donateFragmentOffset = - dmHeight + showDonateHeight;
 
             if (donateOpened)
                 root.setTranslationX(0);
@@ -89,7 +93,7 @@ public class DonateFragment extends Fragment implements View.OnClickListener {
 
         } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
 
-            donateFragmentOffset = -showRootHeight/2 + showDonateHeight;
+            donateFragmentOffset = - dmWidth + showDonateHeight;
 
             if (donateOpened)
                 root.setTranslationX(0);
